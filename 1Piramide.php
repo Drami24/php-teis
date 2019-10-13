@@ -19,10 +19,9 @@ echo '<h2>Pirámide descentrada</h2>';
 function piramideDescentrada($simboloPiramide, $filasPiramide) {
     $asteriscos = $simboloPiramide;
     for ($i = 0; $i < $filasPiramide; ++$i) {
-        $asteriscos = str_repeat('*', $i * 2 + 1); {
+        $asteriscos = str_repeat('*', $i * 2 + 1); 
         $espacios = str_repeat('&nbsp;', 9 - $i);
         echo $espacios . $asteriscos . '<br/>';
-        }
     }
 }
 piramideDescentrada($simboloPiramide, $filasPiramide);
@@ -31,10 +30,9 @@ echo '<h2>Pirámide centrada</h2>';
 function piramideCentrada($simboloPiramide, $filasPiramide) {
     $asteriscos = $simboloPiramide;
     for ($i = 0; $i < $filasPiramide; ++$i) {
-        $asteriscos = str_repeat('*', $i * 2 + 1); {
+        $asteriscos = str_repeat('*', $i * 2 + 1);
         $espacios = str_repeat('_', 9 - $i);
         echo $espacios . $asteriscos . '<br/>';
-        }
     }
 }
 piramideCentrada($simboloPiramide, $filasPiramide);
