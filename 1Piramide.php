@@ -36,5 +36,5 @@ function piramideCentrada($simboloPiramide, $filasPiramide) {
 }
 piramideCentrada($simboloPiramide, $filasPiramide);
 
-echo '<h2>Bonus pirámide personalizada</h2>';
+echo '<h2>Bonus, pirámide personalizada</h2>';
 piramideCentrada('+', 25);

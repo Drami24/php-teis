@@ -12,7 +12,6 @@ function crearBasePiramide($simboloPiramide, $filasPiramide) {
         $piramide .= $simboloPiramide;
     }
     return $piramide;
-    echo 'crear' . $piramide;
 }
 
 function piramideDescendente($simboloPiramide, $filasPiramide) {
@@ -25,18 +24,17 @@ function piramideDescendente($simboloPiramide, $filasPiramide) {
 }
 piramideDescendente($simboloPiramide, $filasPiramide);
 
-function piramideDescentrada($simboloPiramide, $filasPiramide) {
-    $piramide = crearBasePiramide($simboloPiramide, $filasPiramide);
+echo '<h2>Piramide centrada</h2>';
+function piramideCentrada($simboloPiramide, $filasPiramide) {
+    $asteriscos = crearBasePiramide($simboloPiramide, $filasPiramide + 1);
+    $espacios = '';
     for ($i = 0; $i < $filasPiramide; ++$i) {
-        $asteriscos = substr($piramide, 1);
-        $espacios = str_repeat('')
+        $asteriscos = substr($asteriscos, 1);
+        $espacios .= '&nbsp;';
+        echo $espacios . $asteriscos . '<br/>';
     }
 }
+piramideCentrada($simboloPiramide, $filasPiramide);
 
-
-for ($i = 0; $i < $filasPiramide; ++$i) {
-    $asteriscos = str_repeat('*', $i * 2 + 1); {
-    $espacios = str_repeat('&nbsp;', 9 - $i);
-    echo $espacios . $asteriscos . '<br/>';
-    }
-}
+echo '<h2>Bonus, pirámide personalizada</h2>';
+piramideCentrada('@', 19);
