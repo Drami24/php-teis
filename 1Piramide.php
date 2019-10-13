@@ -29,9 +29,8 @@ echo '<h2>Pirámide centrada</h2>';
 function piramideCentrada($simboloPiramide, $filasPiramide) {
     for ($i = 0; $i < $filasPiramide; ++$i) {
         $asteriscos = str_repeat($simboloPiramide, $i * 2 + 1);
-        $espacio1 = str_repeat('_', $filasPiramide - $i);
-        $espacio2 = str_repeat('_', $filasPiramide - $i);
-        echo $espacio1 . $asteriscos . $espacio2 . '<br/>';
+        $espacios = str_repeat('_', $filasPiramide - $i);
+        echo $espacios . $asteriscos . $espacios . '<br/>';
     }
 }
 piramideCentrada($simboloPiramide, $filasPiramide);
