@@ -3,7 +3,7 @@
 $simboloPiramide = '*';
 $filasPiramide = 9;
 
-echo '<h1>2. Pirámides</h1>';
+echo '<h1>2. Pirámides Invertidas</h1>';
 echo '<h2>Pirámide descendente</h2>';
 
 function crearBasePiramide($simboloPiramide, $filasPiramide) {
