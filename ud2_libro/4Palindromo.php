@@ -1,9 +1,12 @@
 <?php
 
-$texto = "abcba";
+$texto = 'luz azul';
 
 function esPalindromo($texto) {
-    if(strrev($texto) == $texto) {
+    $texto = str_replace(' ', '', $texto);
+    $textoInvertido = strrev(str_replace(' ', '', $texto));
+    echo $textoInvertido . '<br/>'; 
+    if(strrev($textoInvertido) == $texto) {
         return true;
     } else {
         return false;
