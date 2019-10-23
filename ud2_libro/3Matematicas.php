@@ -16,18 +16,7 @@ function solucionEcuacionSegundoGrado($a, $b, $c) {
         echo 'Solución 1: ' . $soluciones[0] . '<br/>';
         echo 'Solución 2: ' . $soluciones[1] . '<br/><br/>';
     } else {
-        echo 'La ecuación no tiene soluciones reales.<br/><br/>';
+        echo 'La ecuación no tiene soluciones reales.';
     }
     
-} 
-
-solucionEcuacionSegundoGrado(2,5,2);
-solucionEcuacionSegundoGrado(3,5,2);
-solucionEcuacionSegundoGrado(3,3,1);
-solucionEcuacionSegundoGrado(2,0,0);
-//solucionEcuacionSegundoGrado(0,4,2);
-solucionEcuacionSegundoGrado(1,3,2);
-
-
-
-
+}
