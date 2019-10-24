@@ -1,8 +1,8 @@
 <?php
 
-$a = 2;
-$b = 5;
-$c = 2;
+$a = 7;
+$b = 21;
+$c = -28;
 
 $solucion1 = (-$b + sqrt(pow($b,2) - 4 * $a * $c)) / (2 * $a);
 $solucion2 = (-$b - sqrt(pow($b,2) - 4 * $a * $c)) / (2 * $a);
