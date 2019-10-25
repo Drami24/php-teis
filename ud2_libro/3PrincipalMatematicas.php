@@ -2,6 +2,6 @@
 
 require '3Matematicas.php';
 
-solucionEcuacionSegundoGrado(2,5,2);
-solucionEcuacionSegundoGrado(3,5,2);
-solucionEcuacionSegundoGrado(3,3,1);
+calcularEcuacionSegundoGrado(2,5,2);
+calcularEcuacionSegundoGrado(3,5,2);
+calcularEcuacionSegundoGrado(3,3,1);
