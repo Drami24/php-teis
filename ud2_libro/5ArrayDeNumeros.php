@@ -16,9 +16,17 @@ function devolverArray($arrayDeNumeros, $limite) {
 
 function mostrarArray($arrayDeNumeros, $limite) {
     $arrayAMostrar = devolverArray($arrayDeNumeros, $limite);
-    foreach ($arrayAMostrar as $numero) {
-        echo $numero . '<br/>';
+    if (!empty($arrayAMostrar)) {
+        echo 'Los números menores que el límite son: ';
+        foreach ($arrayAMostrar as $numero) {
+            echo $numero . ' ';
+        }
+        echo '<br><br>';
+    } else {
+        echo 'No existe ningun número inferior al límite en el array proporcionado.<br><br>';
     }
 }
 
 mostrarArray($arrayDeNumeros, $limite);
+mostrarArray(array(5,6,7,8), 3);
+mostrarArray(array(11,34,5,9,194,2033), 50);

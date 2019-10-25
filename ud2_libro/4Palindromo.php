@@ -8,7 +8,7 @@ function esPalindromo($texto) {
     $texto = strtolower($texto);
     $texto = quitar_tildes($texto);
     $textoInvertido = strrev($texto);
-    if($textoInvertido == $texto) {
+    if ($textoInvertido == $texto) {
         return true;
     } else {
         return false;
@@ -37,3 +37,6 @@ mostrarPalindromo('Adán no cede con Eva y Yavé no cede con nada');
 mostrarPalindromo('O rey, o joyero');
 mostrarPalindromo('Arroz a la dama da la zorra');
 mostrarPalindromo('Esto no es');
+mostrarPalindromo(23832);
+mostrarPalindromo(2002);
+mostrarPalindromo(123421);
