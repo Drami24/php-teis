@@ -9,8 +9,8 @@
 <body>
     <h2>Hora por teclado</h2>
     <form action="6EnviarSaludo.php" method="post">
-        <label for="hora">Hora (1-24)</label>
-        <input type="text" name="hora" id="hora" placeholder='Introduzca una hora'>
+        <label for="hora">Hora (0-23)</label>
+        <input type="text" name="hora" id="hora" required placeholder='Introduzca una hora'>
         <input type="submit" value="Enviar">
     </form>
 </body>
