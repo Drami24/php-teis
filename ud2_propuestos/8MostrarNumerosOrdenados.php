@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Ordenar Números</h1>
-    <h3>Enviar los números separados por comas</h3>
+    <h3>Enviar los números separados por espacios</h3>
     <form action="8OrdenarNumeros.php" method="post">
         <input type="text" name="numeros" id="numeros">
         <input type="submit" value="Enviar">
