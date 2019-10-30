@@ -2,7 +2,7 @@
 
 $numeros = $_POST['numeros'];
 $arrayNumeros = explode(' ', $numeros);
-$array2 = $arrayNumeros;
+
 sort($arrayNumeros);
 echo 'Numeros ordenados de menor a mayor<br>';
 foreach ($arrayNumeros as $numero) {
@@ -10,8 +10,8 @@ foreach ($arrayNumeros as $numero) {
 }
 echo '<br>';
 
-rsort($array2);
+rsort($arrayNumeros);
 echo 'Numeros ordenados de mayor a menor<br>';
-foreach ($array2 as $numero) {
+foreach ($arrayNumeros as $numero) {
     echo $numero . ' ';
 }

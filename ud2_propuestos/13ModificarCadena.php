@@ -29,36 +29,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $texto = $_POST['cadena'];
     $accion = $_POST['transformarTexto'];
 
-    if (isset($accion) && $accion == 'mayusculas') {
-        convertirAMayusculas($texto);
+    switch($accion){
+        case 'mayusculas':
+            echo convertirAMayusculas($texto) . '<br>';
+            break;
+        case 'minusculas':
+            echo convertirAMinusculas($texto) . '<br>';
+            break;
+        case 'primeraLetra':
+            echo ponerPrimeraLetraMayuscula($texto) . '<br>';
+            break;
+        case 'primeraLetraMayuscula':
+            echo ponerPalabrasConLetraMayuscula($texto) . '<br>';
+            break;
     }
-
-    if (isset($accion) && $accion == 'minusculas') {
-        convertirAMinusculas($texto);
-    }
-
-    if (isset($accion) && $accion == 'primeraLetra') {
-        ponerPrimeraLetraMayuscula($texto);
-    }
-
-    if (isset($accion) && $accion == 'primeraLetraMayuscula') {
-        ponerPalabrasConLetraMayuscula($texto);
-    }
-
 }
 
 function convertirAMayusculas($texto) {
-    echo strtoupper($texto) . '<br>';
+    return strtoupper($texto);
 }
 
 function convertirAMinusculas($texto) {
-    echo strtolower($texto) . '<br>';
+    return strtolower($texto);
 }
 
 function ponerPrimeraLetraMayuscula($texto) {
-    echo ucfirst($texto) . '<br>';
+    return ucfirst($texto);
 }
 
 function ponerPalabrasConLetraMayuscula($texto) {
-    echo ucwords($texto) . '<br>';
+    return ucwords($texto);
 }

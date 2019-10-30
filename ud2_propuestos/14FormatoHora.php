@@ -27,20 +27,18 @@
 <?php 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // 124565
     $numeros = $_POST['numeros'];
-    
-    function construirHora($numeros){
-        $hora = substr($numeros, 0, 2);
-        $minuto = substr($numeros, 2, 2);
-        $segundo = substr($numeros, 4, 2);
-        $esHoraValida = $hora < 24 && $minuto < 60 && $segundo < 60;
-        if (!empty($hora) && !empty($minuto) && !empty($segundo) && $esHoraValida) {
-            return $hora . ':' . $minuto . ':' . $segundo;
-        } else {
-            return false;
-        }
-    }
-
     echo construirHora($numeros);
+}
+
+function construirHora($numeros){
+    $hora = substr($numeros, 0, 2);
+    $minuto = substr($numeros, 2, 2);
+    $segundo = substr($numeros, 4, 2);
+    $esHoraValida = $hora < 24 && $minuto < 60 && $segundo < 60;
+    if (!empty($hora) && !empty($minuto) && !empty($segundo) && $esHoraValida) {
+        return $hora . ':' . $minuto . ':' . $segundo;
+    } else {
+        return false;
+    }
 }
