@@ -11,7 +11,7 @@ function esCapicua($numero) {
 }
 
 function visualizarCapicua($numero) {
-    if (esCapicua($numero) == true) {
+    if (esCapicua($numero)) {
         echo $numero . ' es Capicua<br/>';
     } else {
         echo $numero . ' NO es Capicua<br/>';
@@ -21,14 +21,13 @@ function visualizarCapicua($numero) {
 function numerosCapicuaMenores($numero) {
     $total = 0;
     for ($i = 10; $i < $numero; ++$i) {
-        if (esCapicua($i) == true) {
+        if (esCapicua($i)) {
             $total += $i;
         } 
     }
     echo 'La suma de todos los números capicua menores a ' 
     . $numero . ' es ' . $total . '</br>';
 }
-
 
 visualizarCapicua($numero);
 visualizarCapicua(23421);

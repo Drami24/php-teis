@@ -1,34 +1,40 @@
 <?php
 
-$area = $_POST['area'];
-
-if ($area && $area == 'circulo') {
-    $radio = $_POST['radio'];
-    if ($radio && validarNumero($radio)) {
-        echo 'El área del circulo es ' . calcularAreaCirculo($radio);
-    } else {
-        echo 'No has introducido un número válido';
-    }
+if (isset($_POST['area'])){
+    $area = $_POST['area'];
 }
 
-if ($area && $area == 'triangulo') {
-    $base = $_POST['base'];
-    $altura = $_POST['altura'];
-    if ($base && validarNumero($base) && $altura && validarNumero($altura)) {
-        echo 'El área del triángulo es ' . calcularAreaTriangulo($base, $altura);
-    } else {
-        echo 'No has introducido un número válido';
+if (isset($area)){
+    switch ($area){
+        case 'circulo':
+            $radio = $_POST['radio'];
+            if ($radio && validarNumero($radio)) {
+                echo 'El área del circulo es ' . calcularAreaCirculo($radio);
+            } else {
+                echo 'No has introducido un número válido';
+            }
+        break;
+        case 'triangulo':
+            $base = $_POST['base'];
+            $altura = $_POST['altura'];
+            if ($base && validarNumero($base) && $altura && validarNumero($altura)) {
+                echo 'El área del triángulo es ' . calcularAreaTriangulo($base, $altura);
+            } else {
+                echo 'No has introducido un número válido';
+            }
+        break;
+        case 'cuadrado':
+            $base = $_POST['base'];
+            $altura = $_POST['altura'];
+            if ($base && validarNumero($base) && $altura && validarNumero($altura)) {
+                echo 'El área del triángulo es ' . calcularAreaTriangulo($base, $altura);
+            } else {
+                echo 'No has introducido un número válido';
+            }
+        break;
     }
-}
-
-if ($area && $area == 'cuadrado') {
-    $lado1 = $_POST['lado1'];
-    $lado2 = $_POST['lado2'];
-    if ($lado1 && validarNumero($lado1) && $lado2 && validarNumero($lado2)) {
-        echo 'El área del cuadrado es ' . calcularAreaCuadrado($lado1, $lado2);
-    } else {
-        echo 'No has introducido un número válido';
-    }
+} else {
+    echo 'No has seleccionado nada!';
 }
 
 function validarNumero($numero) {
