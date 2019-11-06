@@ -15,8 +15,8 @@
         
         Mayúsculas: <input type="radio" name="transformarTexto" id="mayusculas" value="mayusculas"> <br/>
         Minúsculas: <input type="radio" name="transformarTexto" id="minusculas" value="minusculas"> <br/>
-        Primera Letra: <input type="radio" name="transformarTexto" id="primeraLetra" value="primeraLetra"> <br/>
-        Primera Letra Palabras: <input type="radio" name="transformarTexto" id="primeraLetraMayuscula" value="primeraLetraMayuscula"> <br/>
+        Primera letra: <input type="radio" name="transformarTexto" id="primeraLetra" value="primeraLetra"> <br/>
+        Primera letra cada palabras: <input type="radio" name="transformarTexto" id="primeraLetraMayuscula" value="primeraLetraMayuscula"> <br/>
         <br>
         <input type="submit" value="Enviar"> <hr>
     </form>

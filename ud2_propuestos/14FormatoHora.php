@@ -13,7 +13,6 @@
         <input 
             type="text" 
             name="numeros" 
-            pattern="[0-2]0\d|1\d|2[0-3][0-5]\d[0-5]\d" 
             id="numeros" 
             minlength="6"
             title = "Introduzca una hora válida 0-23 : 0-59 : 0-59"
@@ -28,7 +27,11 @@
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $numeros = $_POST['numeros'];
-    echo construirHora($numeros);
+    if (construirHora($numeros)) {
+        echo construirHora($numeros);
+    } else {
+        echo 'Los números introducidos no son válidos, rangos: 0-23 : 0-59 : 0-59';
+    }
 }
 
 function construirHora($numeros){
