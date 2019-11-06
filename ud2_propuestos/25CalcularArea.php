@@ -24,10 +24,10 @@ if (isset($area)){
             }
         break;
         case 'cuadrado':
-            $base = $_POST['base'];
-            $altura = $_POST['altura'];
-            if ($base && validarNumero($base) && $altura && validarNumero($altura)) {
-                echo 'El área del triángulo es ' . calcularAreaTriangulo($base, $altura);
+            $lado1 = $_POST['lado1'];
+            $lado2 = $_POST['lado2'];
+            if ($lado1 && validarNumero($lado1) && $lado2 && validarNumero($lado2)) {
+                echo 'El área del cuadrado es ' . calcularAreaCuadrado($lado1, $lado2);
             } else {
                 echo 'No has introducido un número válido';
             }
