@@ -10,8 +10,6 @@ function compararPalabras($texto1, $texto2) {
         if ($texto1[$i] != $texto2[$i]) {
             echo 'Diferencia en la posición ' . ($i + 1). '<br>';
             echo  '"' . $texto1[$i] . '"' . ' vs '. '"' . $texto2[$i] . '"<br>';
-        } else {
-            echo 'no';
         }
     }
 }
