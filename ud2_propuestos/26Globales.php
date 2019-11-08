@@ -1,7 +1,7 @@
 <?php
 
 $user_agent = $_SERVER['HTTP_USER_AGENT'];
- 
+
 function obtenerNavegador($user_agent){
     if(strpos($user_agent, 'MSIE') !== FALSE)
         return 'Internet explorer';
@@ -22,5 +22,6 @@ function obtenerNavegador($user_agent){
     else
         return 'No hemos podido detectar su navegador';
 }
- 
+
 echo 'Navegador: ' . $navegador = obtenerNavegador($user_agent);
+
