@@ -1,10 +1,11 @@
 <?php
 
+/* Dificultad: Fácil 3/10
+La dificultad está puntuada por la complejidad y el tiempo dedicado a cada uno de los ejercicios
+El ejercicio está planteado para poder cambiar el símbolo de la pirámide o el número de filas rápidamente.*/
 $simboloPiramide = '*';
 $filasPiramide = 9;
 
-echo '<h1>1. Pirámides</h1>';
-echo '<h2>Pirámide ascendente</h2>';
 function piramideAscendente($simboloPiramide, $filasPiramide) {
     $piramide = $simboloPiramide;
     for ($i = 0; $i < $filasPiramide; ++$i) {
@@ -13,9 +14,7 @@ function piramideAscendente($simboloPiramide, $filasPiramide) {
         echo '<br/>';
     }
 }
-piramideAscendente($simboloPiramide, $filasPiramide);
 
-echo '<h2>Pirámide descentrada</h2>';
 function piramideDescentrada($simboloPiramide, $filasPiramide) {
     for ($i = 0; $i < $filasPiramide; ++$i) {
         $asteriscos = str_repeat($simboloPiramide, $i * 2 + 1); 
@@ -23,9 +22,7 @@ function piramideDescentrada($simboloPiramide, $filasPiramide) {
         echo $espacios . $asteriscos . '<br/>';
     }
 }
-piramideDescentrada($simboloPiramide, $filasPiramide);
 
-echo '<h2>Pirámide centrada</h2>';
 function piramideCentrada($simboloPiramide, $filasPiramide) {
     for ($i = 0; $i < $filasPiramide; ++$i) {
         $asteriscos = str_repeat($simboloPiramide, $i * 2 + 1);
@@ -33,7 +30,13 @@ function piramideCentrada($simboloPiramide, $filasPiramide) {
         echo $espacios . $asteriscos . $espacios . '<br/>';
     }
 }
-piramideCentrada($simboloPiramide, $filasPiramide);
 
+echo '<h1>1. Pirámides</h1>';
+echo '<h2>Pirámide ascendente</h2>';
+piramideAscendente($simboloPiramide, $filasPiramide);
+echo '<h2>Pirámide descentrada</h2>';
+piramideDescentrada($simboloPiramide, $filasPiramide);
+echo '<h2>Pirámide centrada</h2>';
+piramideCentrada($simboloPiramide, $filasPiramide);
 echo '<h2>Bonus, pirámide personalizada</h2>';
 piramideCentrada('+', 25);

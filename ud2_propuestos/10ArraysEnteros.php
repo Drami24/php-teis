@@ -1,11 +1,11 @@
 <?php
 
+// Dificultad: Fácil 2/10
 $numeros = generarNumerosAleatorios(0, 100, 20);
 $cuadrados = generarArrayExponente($numeros, 2);
 $cubos = generarArrayExponente($numeros, 3);
 
-
-function generarNumerosAleatorios($minimo, $maximo, $cantidadDeNumeros){
+function generarNumerosAleatorios($minimo, $maximo, $cantidadDeNumeros) {
     $arrayNumerosAleatorios = array();
     for ($i = 0; $i < $cantidadDeNumeros; $i++){
         array_push($arrayNumerosAleatorios, rand($minimo, $maximo));
@@ -13,17 +13,17 @@ function generarNumerosAleatorios($minimo, $maximo, $cantidadDeNumeros){
     return $arrayNumerosAleatorios;
 }
 
-function generarArrayExponente($arrayEntrada, $exponente){
-    $arrayCuadrados = array();
+function generarArrayExponente($arrayEntrada, $exponente) {
+    $arrayElevado = array();
     foreach($arrayEntrada as $numero){
-        array_push($arrayCuadrados, pow($numero, $exponente));
+        array_push($arrayElevado, pow($numero, $exponente));
     }
-    return $arrayCuadrados;
+    return $arrayElevado;
 }
 
-function pintarArraysFila($numeros, $cuadrados, $cubos){
+function pintarArraysFila($numeros, $cuadrados, $cubos) {
     for ($i = 0; $i < sizeof($numeros); $i++){
-        echo "<tr> <td>" . $numeros[$i] . "</td>" . "<td>" . $cuadrados[$i] . "</td>" . "<td>" . $cubos[$i] . "</td> </tr>";
+        echo '<tr><td>' . $numeros[$i] . '</td><td>' . $cuadrados[$i] . '</td><td>' . $cubos[$i] . '</td></tr>';
     }
 }
 ?>
@@ -40,6 +40,7 @@ function pintarArraysFila($numeros, $cuadrados, $cubos){
             border: 1px solid black;
         }
         td {
+            text-align: center;
             padding-right: 10px;
             padding-left: 10px;
         }
@@ -53,13 +54,12 @@ function pintarArraysFila($numeros, $cuadrados, $cubos){
     <table>
         <body>
         <tr>
-            <th>Numeros</th>
-            <th>Cuadrados</th>
-            <th>Cubos</th>
+            <th>Número</th>
+            <th>Cuadrado</th>
+            <th>Cubo</th>
         </tr>
         <?php pintarArraysFila($numeros, $cuadrados, $cubos) ?>
         </body>
     </table>
 </body>
 </html>
-

@@ -1,14 +1,11 @@
 <?php
 
+// Dificultad: Fácil 3/10
 $simboloPiramide = '*';
 $filasPiramide = 9;
 
-echo '<h1>2. Pirámides Invertidas</h1>';
-echo '<h2>Pirámide descendente</h2>';
-
 function crearBasePiramide($simboloPiramide, $filasPiramide) {
-    $piramide = $simboloPiramide;
-    for ($i = 0; $i < $filasPiramide -1; ++$i) {
+    for ($i = 0; $i < $filasPiramide; ++$i) {
         $piramide .= $simboloPiramide;
     }
     return $piramide;
@@ -22,9 +19,7 @@ function piramideDescendente($simboloPiramide, $filasPiramide) {
         echo '<br/>';
     }
 }
-piramideDescendente($simboloPiramide, $filasPiramide);
 
-echo '<h2>Piramide centrada</h2>';
 function piramideCentrada($simboloPiramide, $filasPiramide) {
     $asteriscos = crearBasePiramide($simboloPiramide, $filasPiramide + 1);
     $espacios = '';
@@ -34,7 +29,11 @@ function piramideCentrada($simboloPiramide, $filasPiramide) {
         echo $espacios . $asteriscos . '<br/>';
     }
 }
-piramideCentrada($simboloPiramide, $filasPiramide);
 
+echo '<h1>2. Pirámides Invertidas</h1>';
+echo '<h2>Pirámide descendente</h2>';
+piramideDescendente($simboloPiramide, $filasPiramide);
+echo '<h2>Piramide centrada</h2>';
+piramideCentrada($simboloPiramide, $filasPiramide);
 echo '<h2>Bonus, pirámide personalizada</h2>';
 piramideCentrada('@', 19);

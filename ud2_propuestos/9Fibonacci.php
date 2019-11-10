@@ -8,7 +8,7 @@
 </head>
 <body>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-        Numéros: <input type="text" name="numeros" required>
+        Número de fibonacci: <input type="text" name="limiteFibonacci">
         <input type="submit" value="Enviar">
     </form>
 </body>
@@ -16,16 +16,24 @@
 
 <?php
 
+/* Dificultad: Intermedia 6/10
+Ejercicio refactorizado, código anterior:
+https://github.com/damianld/php-teis/commit/e68027888ea68a714d0fbd19729501d7e485907b#diff-c35eb9ff909ef4e5c2fa0a8cc84f4725
+Aunque he refactorizado varios, este ha sido de los que más he simplificado
+*/
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $limite = $_POST['numeros'];
-    $numerosFibonacci = obtenerFibonacci($limite);
-    echo "<h2>Fibonacci</h2>";
-    foreach ($numerosFibonacci as $numero) {
-        echo $numero . '<br>';
+    $limite = $_POST['limiteFibonacci'];
+    if (is_numeric($limite) && $limite > 0) {
+        $numerosFibonacci = obtenerFibonacci($limite);
+        echo "<h2>Fibonacci</h2>";
+        foreach ($numerosFibonacci as $numero) {
+            echo $numero . '<br>';
+        }
     }
 }
 
-function obtenerFibonacci($limite){
+function obtenerFibonacci($limite) {
     $numerosFibonacci = array();
     for ($i=0; $i < $limite; $i++) {
         if ($i > 1){
