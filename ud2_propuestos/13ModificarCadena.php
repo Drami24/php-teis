@@ -25,22 +25,24 @@
 
 // Dificultad: 2/10
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $texto = $_POST['cadena'];
-    $accion = $_POST['transformarTexto'];
-
-    switch($accion) {
-        case 'mayusculas':
-            echo convertirAMayusculas($texto) . '<br>';
-            break;
-        case 'minusculas':
-            echo convertirAMinusculas($texto) . '<br>';
-            break;
-        case 'primeraLetra':
-            echo ponerPrimeraLetraMayuscula($texto) . '<br>';
-            break;
-        case 'primeraLetraMayuscula':
-            echo ponerPalabrasConLetraMayuscula($texto) . '<br>';
-            break;
+    if (($texto = $_POST['cadena']) || $accion = $_POST['transformarTexto']) {
+        switch($accion) {
+            case 'mayusculas':
+                echo convertirAMayusculas($texto) . '<br>';
+                break;
+            case 'minusculas':
+                echo convertirAMinusculas($texto) . '<br>';
+                break;
+            case 'primeraLetra':
+                echo ponerPrimeraLetraMayuscula($texto) . '<br>';
+                break;
+            case 'primeraLetraMayuscula':
+                echo ponerPalabrasConLetraMayuscula($texto) . '<br>';
+                break;
+        }
+    }
+    } else {
+        echo 'No has introducido ningún texto a transformar.';
     }
 }
 
