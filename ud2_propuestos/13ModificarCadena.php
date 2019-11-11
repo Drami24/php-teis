@@ -25,7 +25,8 @@
 
 // Dificultad: 2/10
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (($texto = $_POST['cadena']) || $accion = $_POST['transformarTexto']) {
+    if (!empty($texto = $_POST['cadena']) && isset($_POST['transformarTexto'])) {
+        $accion = $_POST['transformarTexto'];
         switch($accion) {
             case 'mayusculas':
                 echo convertirAMayusculas($texto) . '<br>';
@@ -40,9 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo ponerPalabrasConLetraMayuscula($texto) . '<br>';
                 break;
         }
-    }
     } else {
-        echo 'No has introducido ningún texto a transformar.';
+        echo 'Texto vacio o Radio Button no seleccionado';
     }
 }
 

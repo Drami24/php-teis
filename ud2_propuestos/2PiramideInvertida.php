@@ -5,6 +5,7 @@ $simboloPiramide = '*';
 $filasPiramide = 9;
 
 function crearBasePiramide($simboloPiramide, $filasPiramide) {
+    $piramide = '';
     for ($i = 0; $i < $filasPiramide; ++$i) {
         $piramide .= $simboloPiramide;
     }
