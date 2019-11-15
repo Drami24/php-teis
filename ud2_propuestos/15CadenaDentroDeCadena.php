@@ -1,6 +1,6 @@
 <?php
 
-$texto = 'A galiña azul salta sobre o seu niño';
+$texto = 'A galiña azul salta sobre o seu salta niño';
 echo $texto . '<br>';
 $busqueda = 'salta';
 echo 'Buscamos a palabra ' . $busqueda . '<br><br>'; 

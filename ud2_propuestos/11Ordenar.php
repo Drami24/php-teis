@@ -17,8 +17,8 @@
 </body>
 </html>
 <?php
-// Dificultad 3/10
 
+// Dificultad 3/10
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $numeros = $_POST['numeros'];
     $numeros = explode(',', $numeros);

@@ -1,6 +1,6 @@
 <?php
 
-// Dificultad: Fácil 2/10
+// Dificultad: Fácil 3/10
 $numeros = generarNumerosAleatorios(0, 100, 20);
 $cuadrados = generarArrayExponente($numeros, 2);
 $cubos = generarArrayExponente($numeros, 3);
