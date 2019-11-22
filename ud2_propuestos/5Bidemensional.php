@@ -4,13 +4,18 @@ function generarNumeroAleatorio() {
     return rand(0,2);
 }
 
-$matriz = array();
-
 for ($i = 0; $i < 8; $i++) {
-    $matriz = [$i];
+    for ($j = 0; $j < 8; $j++) {
+        $matriz[$i][$j] = generarNumeroAleatorio();
+    }
 }
 
 for ($i = 0; $i < 8; $i++) {
-    echo $matriz[$i];
+    echo 'fila' . $i . '<br>';
+    for ($j = 0; $j < 8; $j++) {
+        echo 'posicion: ' . $matriz[$i][$j];
+        //echo $matriz[$i][$j];
+        echo '<br>';
+    }
     echo '<br>';
 }
