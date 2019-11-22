@@ -47,11 +47,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 function convertirAMayusculas($texto) {
-    return strtoupper($texto);
+    return mb_strtoupper($texto);
 }
 
 function convertirAMinusculas($texto) {
-    return strtolower($texto);
+    return mb_strtolower($texto);
 }
 
 function ponerPrimeraLetraMayuscula($texto) {
@@ -59,5 +59,5 @@ function ponerPrimeraLetraMayuscula($texto) {
 }
 
 function ponerPalabrasConLetraMayuscula($texto) {
-    return ucwords($texto);
+    return mb_ucwords($texto);
 }
