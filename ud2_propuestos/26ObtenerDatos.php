@@ -28,7 +28,8 @@ echo '1. Navegador: <b>' . $navegador = obtenerNavegador($user_agent) . '</b><br
 echo '2. La version de PHP es: <b>' . phpversion() . '</b><br><br>';
 
 echo '3. Protocolo: <b>' . $_SERVER['SERVER_PROTOCOL'] . '</b><br>';
-echo 'Nombre del Host: <b>' . $_SERVER['SERVER_NAME'] . '</b><br>';
+echo 'Nombre del equipo <b>' . gethostname() . '</b><br>';
+echo 'Nombre del servidor: <b>' . $_SERVER['SERVER_NAME'] . '</b><br>';
 echo 'Path: <b>' . $_SERVER['SCRIPT_NAME'] . '</b><br><br>';
 
 echo '4. IP Cliente: <b>' . $_SERVER['HTTP_HOST'] . '</b><br>';

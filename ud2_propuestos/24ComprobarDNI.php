@@ -23,3 +23,5 @@ function visualizarValidacionDNI($dni) {
 
 visualizarValidacionDNI('12312312A');
 visualizarValidacionDNI('12312312k');
+visualizarValidacionDNI('00000001A');
+visualizarValidacionDNI('12312312AA');
