@@ -18,7 +18,7 @@
     </form>
 
     <?php
-    require 'funciones.php';
+    require '1Funciones.php';
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $filas = obtenerFilasColumnas()[1];
         $columnas = obtenerFilasColumnas()[0];
