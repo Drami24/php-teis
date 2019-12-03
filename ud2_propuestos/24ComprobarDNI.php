@@ -27,3 +27,7 @@ visualizarValidacionDNI('00000001R');
 visualizarValidacionDNI('-0000001R');
 visualizarValidacionDNI('       1R');
 visualizarValidacionDNI('12312312AA');
+visualizarValidacionDNI('10003554A');
+visualizarValidacionDNI('55555555K');
+visualizarValidacionDNI('37544943L');
+visualizarValidacionDNI('21668426B');
