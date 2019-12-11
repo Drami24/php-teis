@@ -17,7 +17,25 @@
 
 <?php
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") { }
+require('1Funcionesv2.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    echo '<br>';
+    function mostrarArrayDNI() {
+        $filas = obtenerFilasColumnas()[0];
+        $columnas = obtenerFilasColumnas()[1];
+        $arrayDNI = obtenerArrayDNI($filas, $columnas);
+        for ($i = 0; $i < $filas; ++$i) {
+            for ($j = 0; $j < $columnas; ++$j) {
+                echo $arrayDNI[$i][$j] . ' ';
+            }
+            echo '<br>';
+        }
+        echo '<br><br>';
+    }
+    mostrarArrayDNI();
+    mostrarArrayDNI();
+}
 
 ?>
 
