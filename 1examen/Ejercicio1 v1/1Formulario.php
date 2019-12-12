@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,9 @@
         }
     </style>
 </head>
+
 <body>
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
         Filas y columnas (separados por comas)
         <input type="text" name="filasColumnas">
         <input type="submit" value="Enviar">
@@ -27,4 +29,5 @@
     ?>
 
 </body>
+
 </html>
