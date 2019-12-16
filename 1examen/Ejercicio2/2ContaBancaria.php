@@ -31,14 +31,14 @@ function validarCodigoCuenta($cuentaBancaria)
 function calcularDigitoControl($bloqueNumeros, $pesos)
 {
     $sumaPonderada = sumaPonderada($bloqueNumeros, $pesos);
-    $sumaPonderadaResto11 = $sumaPonderada % 11;
-    $resultadoRestoPonderado = 11 - $sumaPonderadaResto11;
-    if ($resultadoRestoPonderado === 11) {
+    $resto = $sumaPonderada % 11;
+    $digitoControl = 11 - $resto;
+    if ($digitoControl === 11) {
         return 0;
-    } else if ($resultadoRestoPonderado === 10) {
+    } else if ($digitoControl === 10) {
         return 1;
     } else {
-        return $resultadoRestoPonderado;
+        return $digitoControl;
     }
 }
 
