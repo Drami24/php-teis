@@ -29,6 +29,14 @@ class Persoa
         }
         return NULL;
     }
+
+    public function mostrarPersoa($persona) {
+        echo $persona->nome . '<br>';
+        echo $persona->dataNacemento . '<br>';
+        echo $persona->sexo . '<br>';
+
+
+    }
 }
 $persona1 = new Persoa("Sara", "Plaza", "Ferreiro");
-echo $persona1->NIF;
+mostrarPersoa($persona1);
