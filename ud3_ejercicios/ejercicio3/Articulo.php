@@ -6,13 +6,17 @@ class Articulo {
 
     function __construct($nombre) {
         $this->nombre = $nombre;
-        $id++;
+        $valor = $this->$id++;
+        $this->id = $valor;
     }
 }
 
 $articulo1 = new Articulo('hola');
 $articulo2 = new Articulo('hola');
-
 $articulo3 = new Articulo('hola');
 
 echo $articulo1->nombre;
+echo $articulo1->id;
+
+echo $articulo3->nombre;
+echo $articulo3->id;
