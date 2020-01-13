@@ -3,7 +3,7 @@
 class Persoa 
 {
     private $nome;
-    private DateTime $dataNacemento;
+    private $dataNacemento;
     private $sexo;
 
     function __construct($nome, $dataNacemento, $sexo = 'H')
@@ -39,35 +39,41 @@ class Persoa
 
     public function mostrarPersoa($persoa) {
         echo 'Nome: ' . $persoa->nome . '<br>';
-        //echo 'Fecha de nacemento: ' . $persoa->dataNacemento . '<br>';
-        echo 'Sexo: ';
-        if ($persoa->sexo == 'H') {
-            echo 'Hombre' . '<br>';
-        } else if ($persoa->sexo == 'M') {
-            echo 'Muller' . '<br>';
-        } else {
-            echo 'Descoñecido <br>';
-        }
-        echo '<br>';
+        echo 'Fecha de nacemento: ' . $persoa->dataNacemento->format("Y-m-d") . '<br>';
+        echo 'Sexo: ' . $persoa->mostrarSexo($persoa) . '<br><br>';
     }
 
-    public function diasVivo($persoa) {
-        $fechaNacemento = new DateTime("1994-11-24");
-        $fechaActual = new DateTime("now");
-        //$fechaProba = $persoa->getDataNacemento;
-        $diasVivo = $fechaNacemento->diff($fechaActual);
+    public function mostrarSexo($persoa) {
+        if ($persoa->sexo == 'H') {
+            return 'Hombre';
+        } else if ($persoa->sexo == 'M') {
+            return 'Muller';
+        } else {
+            return 'Descoñecido';
+        }
+    }
 
-        echo $diasVivo->days . ' days ' . '<br>';
+    public function diasVivo($dataNacemento) {
+        $fechaActual = new DateTime("now");
+        $diasVivo = $fechaActual->diff($dataNacemento);
+        return $diasVivo->format("%Y anos, %M meses, %d dias, un total de %a días");
+    }
+
+    public function mostrarMensaxe($persoa) {
+        echo $persoa->getNome() . ' ten ' . $persoa->diasVivo($persoa->getDataNacemento()) . '<br>';
+        echo 'O seu sexo é: ' . $persoa->mostrarSexo($persoa) . '<br><br>';
     }
 
 }
 
-$persoa1 = new Persoa('Sara', new DateTime("1994-11-24"), 'M');
+$persoa1 = new Persoa('Sara', new DateTime("1994-09-21"), 'M');
+$persoa2 = new Persoa('Damián', new DateTime("1993-01-24"));
+$persoa3 = new Persoa('Jose Ramón', new DateTime("1994-10-16"), 'Otro');
+
 $persoa1->mostrarPersoa($persoa1);
-$persoa1->diasVivo($persoa1);
-
-$persoa2 = new Persoa('Damián', '1993-01-24');
 $persoa2->mostrarPersoa($persoa2);
-
-$persoa3 = new Persoa('Jose Ramón', '1994-10-16', 'Otro');
 $persoa3->mostrarPersoa($persoa3);
+
+$persoa1->mostrarMensaxe($persoa1);
+$persoa2->mostrarMensaxe($persoa2);
+$persoa3->mostrarMensaxe($persoa3);
