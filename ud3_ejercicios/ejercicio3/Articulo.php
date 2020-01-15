@@ -1,22 +1,39 @@
 <?php
 
-class Articulo {
-    public $id;
-    public $nombre;
+class Articulo
+{
+    private $id;
+    private $nombre;
 
-    function __construct($nombre) {
+    function __construct($id, $nombre) {
+        $this->id = $id;
         $this->nombre = $nombre;
-        $valor = $this->$id++;
-        $this->id = $valor;
+    }
+
+    function __get($atributo) {
+        if (property_exists(__CLASS__, $atributo)) {
+            return $this->$atributo;
+        }
+        return "El atributo $atributo no existe";
+    }
+
+    function __set ($atributo, $valor) {
+        if (property_exists(__CLASS__, $atributo)) {
+            $this->$atributo = $valor;
+        } else {
+            echo "El atributo $atributo no existe";
+        }
+    }
+
+    function __clone() {
+        $this->id += 1;
     }
 }
 
-$articulo1 = new Articulo('hola');
-$articulo2 = new Articulo('hola');
-$articulo3 = new Articulo('hola');
+$articulo1 = new Articulo(1, 'Logitech G Pro');
+echo $articulo1->id . '<br>';
+echo $articulo1->nombre . '<br>';
 
-echo $articulo1->nombre;
-echo $articulo1->id;
-
-echo $articulo3->nombre;
-echo $articulo3->id;
+$articuloClon = clone($articulo1);
+echo $articuloClon->id . '<br>';
+echo $articuloClon->nombre . '<br>';
