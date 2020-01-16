@@ -2,11 +2,11 @@
 
 class Articulo
 {
-    private $id;
+    public static $id = 0;
     private $nombre;
 
-    function __construct($id, $nombre) {
-        $this->id = $id;
+    function __construct($nombre) {
+        self::$id++;
         $this->nombre = $nombre;
     }
 
@@ -26,14 +26,26 @@ class Articulo
     }
 
     function __clone() {
-        $this->id += 1;
+        self::$id++;
     }
 }
 
-$articulo1 = new Articulo(1, 'Logitech G Pro');
-echo $articulo1->id . '<br>';
-echo $articulo1->nombre . '<br>';
+$articulo1 = new Articulo('Logitech G Pro');
+echo 'ID: ' . Articulo::$id . '<br>';
+echo 'Nombre: ' . $articulo1->nombre . '<br>';
 
-$articuloClon = clone($articulo1);
-echo $articuloClon->id . '<br>';
-echo $articuloClon->nombre . '<br>';
+$articuloClon1 = clone($articulo1);
+echo 'ID: ' . Articulo::$id . '<br>';
+echo 'Nombre: ' . $articuloClon1->nombre . '<br>';
+
+$articulo2 = new Articulo('Corsair K70');
+echo 'ID: ' . Articulo::$id . '<br>';
+echo 'Nombre: ' . $articulo2->nombre . '<br>';
+
+$articuloClon2 = clone($articulo2);
+echo 'ID: ' . Articulo::$id . '<br>';
+echo 'Nombre: ' . $articuloClon2->nombre . '<br>';
+
+$articuloClon22 = clone($articulo2);
+echo 'ID: ' . Articulo::$id . '<br>';
+echo 'Nombre: ' . $articuloClon22->nombre . '<br>';
