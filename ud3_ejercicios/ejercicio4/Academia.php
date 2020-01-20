@@ -72,14 +72,14 @@ class Alumno extends Persoa
 
     public function aPagar()
     {
-        if ($this->numeroClases === 1) {
-            return '20 euros';
-        } else if ($this->numeroClases === 2) {
-            return '32 euros';
+        if ($this->numeroClases == 1) {
+            echo '20 euros';
+        } else if ($this->numeroClases == 2) {
+            echo '32 euros';
         } else if ($this->numeroClases > 2) {
-            return '40 euros';
+            echo '40 euros';
         } else {
-            return 'Debe indicar previamente o número de clases';
+            echo 'Debe indicar previamente o número de clases';
         }
 
     }
@@ -88,6 +88,7 @@ class Alumno extends Persoa
 class Profesor extends Persoa
 {
     private $dni;
+    private $bailes = array();
 
     public function __construct($nombre, $apellidos, $movil, $dni)
     {
@@ -112,24 +113,40 @@ class Profesor extends Persoa
         }
     }
 
-    public function calcularSoldo($numeroClasesMes)
+    public function verInformacion()
     {
-        return $numeroClasesMes * 16;
+        echo "$this->nombre $this->apellidos ($this->movil) $this->dni";
     }
 
-    public function engadirBaile($baile)
+    public function calcularSoldo($horas, $precio = 16)
+    {
+        return $horas * $precio;
+    }
+
+    public function engadirBaile($nombre, $edad = 8)
+    {
+        $baile = new Baile($nombre, $edad);
+        array_push($this->bailes, $baile);
+
+        // foreach ($this->bailes as $baile) {
+        //     if(!$baile->nombre == $nombre) {
+        //     } else {
+        //         echo 'Error, ese baile ya lo imparte';
+        //     }
+        // }
+    }
+
+    public function eliminarBaile()
     {
 
     }
 
-    public function eliminarBaile($baile)
+    public function bailesImpartidos()
     {
-
-    }
-
-    public function bailesImpartidos($baile)
-    {
-        echo $baile->nombre;
+        foreach ($this->bailes as $baile) {
+            echo $baile->nombre . ' (idade min: ' . $baile->edadMinima . ' anos)';
+            echo '<br>';
+        }
     }
 }
 
@@ -138,7 +155,7 @@ class Baile
     private $nombre;
     private $edadMinima;
 
-    public function __construct($nombre, $edadMinima = 8)
+    public function __construct($nombre, $edadMinima)
     {
         $this->nombre = $nombre;
         $this->edadMinima = $edadMinima;
@@ -166,6 +183,22 @@ class Baile
 $alumno1 = new Alumno('Marta', 'Gómez Vieites', '666333555');
 $profesor1 = new Profesor('Diego', 'García Fernández', '654321789', '74859675L');
 
+echo 'ALUMNO 1:<br>';
 $alumno1->verInformacion();
+echo '<br>';
+$alumno1->numeroClases = 2;
+echo 'Cantidad a pagar: ';
+$alumno1->aPagar();
+echo '<br><br>';
+
+echo 'PROFESOR 1:<br>';
 $profesor1->verInformacion();
-echo $profesor1->dni;
+$profesor1->engadirBaile('Salsa', 12);
+$profesor1->engadirBaile('Bachata');
+$profesor1->engadirBaile('Bachata');
+
+
+echo '<br>';
+$profesor1->bailesImpartidos();
+
+var_dump($profesor1->bailes);
