@@ -2,11 +2,12 @@
 
 class Academia
 {
-    const nome = 'Academia de Baile Teis';
-    //array profesores
-    //array alumnos
+    const NOMBRE = 'Salón de Baile Teis';
+    public $profesores = array();
+    public $alumnos = array();
 }
 
+    
 class Persoa
 {
     protected $nombre;
@@ -81,7 +82,6 @@ class Alumno extends Persoa
         } else {
             echo 'Debe indicar previamente o número de clases';
         }
-
     }
 }
 
@@ -118,25 +118,24 @@ class Profesor extends Persoa
         echo "$this->nombre $this->apellidos ($this->movil) $this->dni";
     }
 
-    public function calcularSoldo($horas, $precio = 16)
+    public function calcularSoldo($sesiones, $precio = 16)
     {
-        return $horas * $precio;
+        return $sesiones * $precio;
     }
 
     public function engadirBaile($nombre, $edad = 8)
     {
+        foreach ($this->bailes as $baile) {
+            if($baile->nombre == $nombre) {
+                echo 'El profesor ya imparte ' . $baile->nombre;
+                return;
+            }
+        }
         $baile = new Baile($nombre, $edad);
         array_push($this->bailes, $baile);
-
-        // foreach ($this->bailes as $baile) {
-        //     if(!$baile->nombre == $nombre) {
-        //     } else {
-        //         echo 'Error, ese baile ya lo imparte';
-        //     }
-        // }
     }
 
-    public function eliminarBaile()
+    public function eliminarBaile($nombreBaile)
     {
 
     }
@@ -180,25 +179,28 @@ class Baile
 
 }
 
-$alumno1 = new Alumno('Marta', 'Gómez Vieites', '666333555');
-$profesor1 = new Profesor('Diego', 'García Fernández', '654321789', '74859675L');
+$academia = new Academia();
+$profesor1 = new Profesor('Fran', 'García Fernández', 654582395, '35368106K');
+$profesor2 = new Profesor('Emma', 'García Rey', 635988421, '74566852A');
+array_push($academia->profesores, $profesor1, $profesor2);
+//var_dump($academia->profesores);
 
-echo 'ALUMNO 1:<br>';
-$alumno1->verInformacion();
-echo '<br>';
-$alumno1->numeroClases = 2;
-echo 'Cantidad a pagar: ';
-$alumno1->aPagar();
+$profesor1->engadirBaile('Afro');
+$profesor1->engadirBaile('Tango', 12);
+$profesor1->engadirBaile('HIP HOP');
+$profesor1->engadirBaile('Afro', 9);
+echo '<br><br>';
+//var_dump($profesor1->bailes);
+
+$alumno1 = new Alumno('Jose Ramón', 'Vieites Romay', 685221496);
+$alumno2 = new Alumno('Araceli', 'Lores García', 658741698);
+
+echo 'ACADEMIA<br>';
+echo Academia::NOMBRE;
 echo '<br><br>';
 
-echo 'PROFESOR 1:<br>';
-$profesor1->verInformacion();
-$profesor1->engadirBaile('Salsa', 12);
-$profesor1->engadirBaile('Bachata');
-$profesor1->engadirBaile('Bachata');
-
-
-echo '<br>';
+echo 'PROFESOR<br>';
+echo $profesor1->verInformacion() . '<br>';
+echo 'El sueldo del profesor es ' . $profesor1->calcularSoldo(18, 25) . ' euros<br>';
+echo 'Bailes impartidos:<br>';
 $profesor1->bailesImpartidos();
-
-var_dump($profesor1->bailes);
