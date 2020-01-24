@@ -1,4 +1,5 @@
 <?php
+// https://lachabela.wordpress.com/2012/02/24/fechas-en-espanol-con-php-y-setlocale/
 
 class Data
 {
@@ -11,6 +12,8 @@ class Data
 
     static function getData()
     {   
+        /*setlocale(LC_ALL,"es_ES.UTF-8");
+        echo strftime("%A %d de %B del %Y");*/
         $dia = date('l');
         $diaNumero = date('d');
         $mes = date('F');
