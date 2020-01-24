@@ -45,7 +45,7 @@ class Persoa
 
 }
 
-class Alumno extends Persoa
+final class Alumno extends Persoa
 {
     private $numeroClases;
 
@@ -85,7 +85,7 @@ class Alumno extends Persoa
     }
 }
 
-class Profesor extends Persoa
+final class Profesor extends Persoa
 {
     private $dni;
     private $bailes = array();
@@ -140,7 +140,11 @@ class Profesor extends Persoa
 
     public function eliminarBaile($nombreBaile)
     {
-
+        foreach ($this->bailes as $key => $value) {
+            if($value->nombre == $nombreBaile) {
+                unset($this->bailes[$key]);
+            }
+        }
     }
 
     public function bailesImpartidos()
@@ -207,4 +211,23 @@ echo 'PROFESOR<br>';
 echo $profesor1->verInformacion() . '<br>';
 echo 'El sueldo del profesor es ' . $profesor1->calcularSoldo(18, 25) . ' euros<br>';
 echo 'Bailes impartidos:<br>';
+$profesor1->bailesImpartidos();
+echo '<br>';
+
+echo 'ALUMNOS<br>';
+echo $alumno1->verInformacion() . '<br>';
+$alumno1->numeroClases = 2;
+echo 'Cuota a pagar: ';
+$alumno1->aPagar();
+echo '<br>';
+
+echo $alumno2->verInformacion() . '<br>';
+$alumno2->numeroClases = 3;
+echo 'Cuota a pagar: ';
+$alumno2->aPagar();
+echo '<br><br>';
+
+echo 'Bailes Profesor (eliminar baile Afro)<br>';
+$profesor1->eliminarBaile('Afro');
+//var_dump($profesor1->bailes);
 $profesor1->bailesImpartidos();
