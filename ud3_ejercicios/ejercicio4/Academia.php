@@ -125,14 +125,17 @@ class Profesor extends Persoa
 
     public function engadirBaile($nombre, $edad = 8)
     {
+        $repetido = false;
         foreach ($this->bailes as $baile) {
             if($baile->nombre == $nombre) {
+                $repetido = true;
                 echo 'El profesor ya imparte ' . $baile->nombre;
-                return;
             }
         }
-        $baile = new Baile($nombre, $edad);
-        array_push($this->bailes, $baile);
+        if (!$repetido){
+            $nuevoBaile = new Baile($nombre, $edad);
+            array_push($this->bailes, $nuevoBaile);
+        }
     }
 
     public function eliminarBaile($nombreBaile)
@@ -183,7 +186,7 @@ $academia = new Academia();
 $profesor1 = new Profesor('Fran', 'García Fernández', 654582395, '35368106K');
 $profesor2 = new Profesor('Emma', 'García Rey', 635988421, '74566852A');
 array_push($academia->profesores, $profesor1, $profesor2);
-//var_dump($academia->profesores);
+// var_dump($academia->profesores);
 
 $profesor1->engadirBaile('Afro');
 $profesor1->engadirBaile('Tango', 12);
@@ -194,6 +197,7 @@ echo '<br><br>';
 
 $alumno1 = new Alumno('Jose Ramón', 'Vieites Romay', 685221496);
 $alumno2 = new Alumno('Araceli', 'Lores García', 658741698);
+array_push($academia->alumnos, $alumno1, $alumno2);
 
 echo 'ACADEMIA<br>';
 echo Academia::NOMBRE;
