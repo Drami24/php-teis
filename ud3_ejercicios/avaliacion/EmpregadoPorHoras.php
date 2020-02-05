@@ -1,6 +1,8 @@
 <?php
 
-class EmpregadoPorHoras extends Empregado
+include_once('InterfazCompararHoras.php');
+
+class EmpregadoPorHoras extends Empregado implements CompararHoras
 {
     private $horasMes;
     private $precioHora;
@@ -32,11 +34,33 @@ class EmpregadoPorHoras extends Empregado
 
     function salarioMes()
     {
-
+        return round($this->horasMes*$this->precioHora, 2);
     }
 
-    function incrementarSalario()
+    function incrementarSalario($nuevoPrecioHora)
     {
-        
+        $this->precioHora = $nuevoPrecioHora;
+    }
+
+    function compararHoras($empleado) {
+        $horas1 = $this->horasMes;
+        echo $horas1 . ' horas de <br>';
+        $this->nomeCompleto();
+        echo '<br><br>';
+        $horas2 = $empleado->horasMes;
+        echo $horas2 . ' horas de <br>';
+        $empleado->nomeCompleto();
+        echo '<br><br>';
+        if ($horas1 < $horas2) {
+            $horasMenos = $horas2 - $horas1;
+            $this->nomeCompleto();
+            echo ' traballou ' . $horasMenos . ' horas menos que ';
+            $empleado->nomeCompleto();
+        } else {
+            $horasMenos = $horas1 - $horas2;
+            $empleado->nomeCompleto();
+            echo ' traballou ' . $horasMenos . ' horas menos que ';
+            $this->nomeCompleto();
+        }
     }
 }

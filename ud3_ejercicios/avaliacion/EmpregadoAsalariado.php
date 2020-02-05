@@ -29,12 +29,12 @@ class EmpregadoAsalariado extends Empregado
 
     function salarioMes()
     {
-
+        return round($this->importeAnual/14, 2);
     }
 
-    function incrementarSalario()
+    function incrementarSalario($porcentaxe)
     {
-        
+        $this->importeAnual = $this->importeAnual * $porcentaxe/100 + $this->importeAnual;
     }
 
 }

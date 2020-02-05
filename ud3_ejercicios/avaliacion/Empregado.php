@@ -36,5 +36,5 @@ abstract class Empregado
     }
 
     abstract function salarioMes();
-    abstract function incrementarSalario();
+    abstract function incrementarSalario($suplemento);
 }
