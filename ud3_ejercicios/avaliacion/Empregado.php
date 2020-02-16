@@ -32,7 +32,18 @@ abstract class Empregado
     
     function nomeCompleto()
     {
-        echo $this->nome . ' ' . $this->apelidos;
+        return $this->nome . ' ' . $this->apelidos;
+    }
+
+    function mostrarEmpregados($empregados) {
+        echo 'En total temos ' . count($empregados) . ' empregados.<br><br>';
+        foreach ($empregados as $empregado) {
+            if ($empregado instanceof EmpregadoAsalariado) {
+                echo 'O empregado ' . $empregado->nomeCompleto() . ' é un empregado asalariado que cobra ' . $empregado->salarioMes() . ' €<br>';
+            } else if ($empregado instanceof EmpregadoPorHoras) {
+                echo 'O empregado ' . $empregado->nomeCompleto() . ' é un empregado contratado por horas que cobra ' . $empregado->salarioMes() . ' €<br>';
+            }
+        }
     }
 
     abstract function salarioMes();

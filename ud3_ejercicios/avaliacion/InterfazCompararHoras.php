@@ -2,5 +2,5 @@
 
 interface CompararHoras
 {
-    function compararHoras($empleado);
+    function compararHoras(EmpregadoPorHoras $empleado);
 }

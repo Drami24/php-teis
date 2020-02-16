@@ -8,7 +8,7 @@ class EmpregadoPorHoras extends Empregado implements CompararHoras
     private $precioHora;
     
     
-    public function __construct($nome, $apelidos, $NSS, $precioHora, $horasMes)
+    public function __construct($nome, $apelidos, $NSS, $precioHora = 25, $horasMes)
     {
         parent::__construct($nome, $apelidos, $NSS);
         $this->horasMes = $horasMes;
@@ -34,7 +34,7 @@ class EmpregadoPorHoras extends Empregado implements CompararHoras
 
     function salarioMes()
     {
-        return round($this->horasMes*$this->precioHora, 2);
+        return round($this->horasMes * $this->precioHora, 2);
     }
 
     function incrementarSalario($nuevoPrecioHora)
@@ -42,25 +42,18 @@ class EmpregadoPorHoras extends Empregado implements CompararHoras
         $this->precioHora = $nuevoPrecioHora;
     }
 
-    function compararHoras($empleado) {
-        $horas1 = $this->horasMes;
-        echo $horas1 . ' horas de <br>';
-        $this->nomeCompleto();
-        echo '<br><br>';
-        $horas2 = $empleado->horasMes;
-        echo $horas2 . ' horas de <br>';
-        $empleado->nomeCompleto();
-        echo '<br><br>';
-        if ($horas1 < $horas2) {
-            $horasMenos = $horas2 - $horas1;
-            $this->nomeCompleto();
-            echo ' traballou ' . $horasMenos . ' horas menos que ';
-            $empleado->nomeCompleto();
-        } else {
-            $horasMenos = $horas1 - $horas2;
-            $empleado->nomeCompleto();
-            echo ' traballou ' . $horasMenos . ' horas menos que ';
-            $this->nomeCompleto();
+    function compararHoras(EmpregadoPorHoras $empregado) 
+    {
+        $horasEmpregadoActual = $this->horasMes;
+        $horasEmpregadoAComparar = $empregado->horasMes;
+        if ($horasEmpregadoActual < $horasEmpregadoAComparar) {
+            $horas = $horasEmpregadoAComparar - $horasEmpregadoActual;
+            echo $this->nomeCompleto() . ' traballou ' . $horas . ' horas menos que ' . $empregado->nomeCompleto();
+        } else if ($horasEmpregadoActual > $horasEmpregadoAComparar){
+            $horas = $horasEmpregadoActual - $horasEmpregadoAComparar;
+            echo $this->nomeCompleto() . ' traballou ' . $horas . ' horas máis que ' . $empregado->nomeCompleto();
+        } else if ($horasEmpregadoActual == $horasEmpregadoAComparar) {
+            echo $this->nomeCompleto() . ' traballou as mesmas horas que ' . $empregado->nomeCompleto();
         }
     }
 }

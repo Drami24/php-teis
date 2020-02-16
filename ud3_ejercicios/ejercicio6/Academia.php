@@ -120,10 +120,10 @@ final class Profesor extends Persoa implements Comparar
 
     public function verInformacion()
     {
-        echo "$this->nombre $this->apellidos ($this->movil) $this->dni";
+        echo "$this->nombre $this->apellidos $this->edad años ($this->movil) $this->dni";
     }
 
-    function comparar($profesor) {
+    function comparar(Profesor $profesor) {
         if($this->edad < $profesor->edad) {
             echo 'Soy más joven';
         } else {

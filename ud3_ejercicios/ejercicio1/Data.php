@@ -12,21 +12,18 @@ class Data
 
     static function getData()
     {   
-        /*setlocale(LC_ALL,"es_ES.UTF-8");
-        echo strftime("%A %d de %B del %Y");*/
-        $dia = date('l');
-        $diaNumero = date('d');
+        setlocale(LC_ALL,"es_ES.UTF-8");
+        return strftime("%A %d de %B do %Y");
+        /*$dia = date('l d');
         $mes = date('F');
         $anho = date('Y');
-        return $dia . ' ' . $diaNumero . ' de ' . $mes . ' do ' . $anho;
+        return $dia . ' de ' . $mes . ' do ' . $anho;*/
     }
 
     static function getHora()
     {
-        $hora = date('H');
-        $minuto = date('i');
-        $segundo = date('s');
-        return $hora . ':' . $minuto . ':' . $segundo;
+        return strftime("%H:%M:%S");
+        //return date('H:i:s');
     }
 
     function getDataHora()
@@ -36,4 +33,4 @@ class Data
 }
 
 echo 'Usamos o calendario: <u>' . Data::getCalendario() . '</u><br>';
-Data::getDataHora();
+echo Data::getDataHora();
