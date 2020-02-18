@@ -30,3 +30,25 @@ function checkLogin($email, $password) {
         return false;
     }
 }
+
+function obtenerCategorias() {
+    $conexion = obtenerConexion();
+    $sql = "SELECT * FROM CATEGORIAS";
+    return $conexion->query($sql)->fetchAll(PDO::FETCH_OBJ);
+}
+
+function obtenerCategoria($codigo) {
+    $conexion = obtenerConexion();
+    $sql = "SELECT * FROM CATEGORIAS WHERE CODIGO = ?";
+    $sentencia = $conexion->prepare($sql);
+    $sentencia->execute([$codigo]); 
+    return $sentencia->fetch();
+}
+
+function obtenerProductosCategoria($categoria) {
+    $conexion = obtenerConexion();
+    $sql = "SELECT * FROM PRODUCTOS WHERE CATEGORIA = ?";
+    $sentencia = $conexion->prepare($sql);
+    $sentencia->execute([$categoria]);
+    return $sentencia->fetchAll(PDO::FETCH_OBJ);
+}
