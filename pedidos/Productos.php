@@ -1,9 +1,8 @@
 <?php
-    require_once 'Sesion.php';
+    require 'Sesion.php';
     require_once 'bd.php';
     comprobarSesion();
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -31,7 +30,7 @@
             <form action='añadir.php' method='POST'>
                 <input name='unidades' type='number' min='1' value='1'>
                 <input type='submit' value='Comprar'>
-                <input name='codigo' type='hidden' value='codigo'>
+                <input name='codigoM' type='hidden' value='$codigo'>
             </form>
         </td>
         </tr>";

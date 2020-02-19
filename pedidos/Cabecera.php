@@ -4,3 +4,4 @@
     <a href="Carrito.php">Ver carrito</a>
     <a href="Logout.php">Cerrar sesión</a>
 </header>
+<hr>

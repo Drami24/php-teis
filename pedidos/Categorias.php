@@ -1,9 +1,8 @@
 <?php
-    include_once('Sesion.php');
-    include_once('bd.php');
+    require('Sesion.php');
+    require_once('bd.php');
     comprobarSesion();
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,7 +11,7 @@
     <title>Categorias</title>
 </head>
 <body>
-<?php include_once('Cabecera.php');?>
+<?php require('Cabecera.php');?>
 <h1>Lista de categorías</h1>
 <?php
     $categorias = obtenerCategorias();
