@@ -17,7 +17,7 @@
     $categorias = obtenerCategorias();
     echo '<ul>';
     foreach ($categorias as $categoria) {
-        $url = 'productos.php?categoria=' . $categoria->codigo;
+        $url = 'Productos.php?categoria=' . $categoria->codigo;
         echo '<li><a href="' . $url . '">' . $categoria->nombre . "</a></li>";
     }
     echo '</ul>';

@@ -27,7 +27,7 @@
         $stock = $producto->stock;
         echo "<tr><td>$nombre</td><td>$descripcion</td><td>$peso</td><td>$stock</td>
         <td>
-            <form action='añadir.php' method='POST'>
+            <form action='Añadir.php' method='POST'>
                 <input name='unidades' type='number' min='1' value='1'>
                 <input type='submit' value='Comprar'>
                 <input name='codigoM' type='hidden' value='$codigo'>

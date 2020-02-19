@@ -1,8 +1,8 @@
 <?php
 
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASSWORD', '');
+define('DB_USER', 'damianld');
+define('DB_PASSWORD', 'renaido');
 define('DB_NAME', 'pedidos');
 define('DB_CHARSET', 'utf8');
 
@@ -33,13 +33,13 @@ function checkLogin($email, $password) {
 
 function obtenerCategorias() {
     $conexion = obtenerConexion();
-    $sql = "SELECT * FROM CATEGORIAS";
+    $sql = "SELECT * FROM categorias";
     return $conexion->query($sql)->fetchAll(PDO::FETCH_OBJ);
 }
 
 function obtenerCategoria($codigo) {
     $conexion = obtenerConexion();
-    $sql = "SELECT * FROM CATEGORIAS WHERE CODIGO = ?";
+    $sql = "SELECT * FROM categorias WHERE codigo = ?";
     $sentencia = $conexion->prepare($sql);
     $sentencia->execute([$codigo]); 
     return $sentencia->fetch();
@@ -47,7 +47,7 @@ function obtenerCategoria($codigo) {
 
 function obtenerProductosCategoria($categoria) {
     $conexion = obtenerConexion();
-    $sql = "SELECT * FROM PRODUCTOS WHERE CATEGORIA = ?";
+    $sql = "SELECT * FROM productos WHERE categoria = ?";
     $sentencia = $conexion->prepare($sql);
     $sentencia->execute([$categoria]);
     return $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -56,7 +56,7 @@ function obtenerProductosCategoria($categoria) {
 function obtenerProductos($codigosProductos) {
     $conexion = obtenerConexion();
     $codigos = implode(',', $codigosProductos);
-    $sql = "SELECT * FROM PRODUCTOS WHERE CODIGO IN (1)";
+    $sql = "SELECT * FROM productos WHERE codigo IN (1)";
     $productos =  $conexion->query($sql)->fetchAll(PDO::FETCH_OBJ);
     return $productos;
 }
