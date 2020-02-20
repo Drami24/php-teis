@@ -56,7 +56,7 @@ function obtenerProductosCategoria($categoria) {
 function obtenerProductos($codigosProductos) {
     $conexion = obtenerConexion();
     $codigos = implode(',', $codigosProductos);
-    $sql = "SELECT * FROM productos WHERE codigo IN (1)";
-    $productos =  $conexion->query($sql)->fetchAll(PDO::FETCH_OBJ);
+    $sql = "SELECT * FROM productos WHERE codigo IN ($codigos)";
+    $productos =  $conexion->query($sql);
     return $productos;
 }

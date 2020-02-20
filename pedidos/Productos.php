@@ -1,5 +1,5 @@
 <?php
-    require 'Sesion.php';
+    require_once 'Sesion.php';
     require_once 'bd.php';
     comprobarSesion();
 ?>
@@ -30,7 +30,7 @@
             <form action='Añadir.php' method='POST'>
                 <input name='unidades' type='number' min='1' value='1'>
                 <input type='submit' value='Comprar'>
-                <input name='codigoM' type='hidden' value='$codigo'>
+                <input name='codigo' type='hidden' value='$codigo'>
             </form>
         </td>
         </tr>";

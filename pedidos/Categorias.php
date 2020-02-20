@@ -1,5 +1,5 @@
 <?php
-    require('Sesion.php');
+    require_once('Sesion.php');
     require_once('bd.php');
     comprobarSesion();
 ?>
