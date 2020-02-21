@@ -15,6 +15,9 @@
     require 'Cabecera.php';
     $categoria = obtenerCategoria($_GET['categoria']);
     $productos = obtenerProductosCategoria($_GET['categoria']);
+    if(isset($_GET['stock'])) {
+        echo '<p>Unidades no añadidas, las unidades superan al stock en el carrito.</p>';
+    }
     if($productos === FALSE) {
         echo '<p>Esta categoria no tiene productos.</p>';
         echo '<p>Necesitas añadir productos de la categoria <b>' . $categoria->nombre . '</b> en la base de datos.</p>';
@@ -32,10 +35,11 @@
             echo "<tr><td>$nombre</td><td>$descripcion</td><td>$peso</td><td>$stock</td>
             <td>
                 <form action='añadirProductoCarrito.php' method='post'>
-                    <input name='unidades' type='number' min='1' value='1'>
+                    <input name='unidades' type='number' min='1' max='$stock' value='1'>
                     <input type='submit' value='Comprar'>
                     <input name='codigo' type='hidden' value='$codigo'>
                     <input name='categoria' type='hidden' value='$categoria->codigo'>
+                    <input name='stock' type='hidden' value='$stock'>
                 </form>
             </td>
             </tr>";
