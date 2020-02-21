@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-02-2020 a las 15:18:39
+-- Tiempo de generación: 21-02-2020 a las 10:06:20
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.4
 
@@ -40,7 +40,60 @@ CREATE TABLE `categorias` (
 
 INSERT INTO `categorias` (`codigo`, `nombre`, `descripcion`) VALUES
 (1, 'refrescos', 'bebidas carbonatadas y zumos'),
-(2, 'vinos', 'bebidas alcohólicas');
+(2, 'vinos', 'bebidas alcohólicas'),
+(3, 'alimentos', 'alimenta que da gusto');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pedidos`
+--
+
+CREATE TABLE `pedidos` (
+  `codigo` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `enviado` int(11) NOT NULL,
+  `restaurante` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `pedidos`
+--
+
+INSERT INTO `pedidos` (`codigo`, `fecha`, `enviado`, `restaurante`) VALUES
+(2, '2020-02-20 10:32:15', 0, 1),
+(3, '2020-02-20 10:33:50', 0, 1),
+(4, '2020-02-21 08:44:41', 0, 1),
+(5, '2020-02-21 09:27:59', 0, 1),
+(9, '2020-02-21 09:43:36', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pedidos_productos`
+--
+
+CREATE TABLE `pedidos_productos` (
+  `codigo` int(11) NOT NULL,
+  `pedido` int(11) NOT NULL,
+  `producto` int(11) NOT NULL,
+  `unidades` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `pedidos_productos`
+--
+
+INSERT INTO `pedidos_productos` (`codigo`, `pedido`, `producto`, `unidades`) VALUES
+(1, 2, 2, 1),
+(2, 2, 3, 1),
+(3, 3, 3, 5),
+(4, 3, 1, 3),
+(5, 4, 3, 5),
+(6, 4, 1, 3),
+(7, 5, 5, 3),
+(8, 5, 1, 2),
+(10, 9, 4, 5);
 
 -- --------------------------------------------------------
 
@@ -62,7 +115,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`codigo`, `nombre`, `descripcion`, `peso`, `stock`, `categoria`) VALUES
-(1, 'Coca Cola', '50 latas de 33cl', 16, 32, 1),
+(1, 'Coca Cola', '50 latas de 33cl', 16, 18, 1),
 (2, 'Kas de Naranja', '30 latas de 33cl', 10, 17, 1),
 (3, 'Albariño Condes de Albarei', '12 botellas de 0.75L', 12, 15, 2),
 (4, 'Albariño Paco y Loca', '6 botellas de 1L', 6, 11, 2),
@@ -91,7 +144,8 @@ CREATE TABLE `restaurantes` (
 
 INSERT INTO `restaurantes` (`codigo`, `nombre`, `email`, `password`, `pais`, `ciudad`, `direccion`, `codigo_postal`) VALUES
 (1, 'Goiko', 'pedidos@goiko.com', 'goiko', 'España', 'Vigo', 'Rúa de Rosalía de Castro, 9', 36201),
-(2, 'La Pepita', 'pedidos@lapepita.com', 'lapepita', 'España', 'Vigo', 'Rúa de Oporto, 15', 36201);
+(2, 'La Pepita', 'pedidos@lapepita.com', 'lapepita', 'España', 'Vigo', 'Rúa de Oporto, 15', 36201),
+(4, 'Galipizza', 'pedidos@galipizza.com', 'galipizza', 'España', 'Vigo', 'Rúa de Rosalía de Castro, 48', 36201);
 
 --
 -- Índices para tablas volcadas
@@ -101,7 +155,23 @@ INSERT INTO `restaurantes` (`codigo`, `nombre`, `email`, `password`, `pais`, `ci
 -- Indices de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`codigo`);
+  ADD PRIMARY KEY (`codigo`),
+  ADD UNIQUE KEY `u_categorias` (`nombre`);
+
+--
+-- Indices de la tabla `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD PRIMARY KEY (`codigo`),
+  ADD KEY `fk_restaurante` (`restaurante`);
+
+--
+-- Indices de la tabla `pedidos_productos`
+--
+ALTER TABLE `pedidos_productos`
+  ADD PRIMARY KEY (`codigo`),
+  ADD KEY `fk_pedidos` (`pedido`),
+  ADD KEY `fk_producto` (`producto`);
 
 --
 -- Indices de la tabla `productos`
@@ -114,7 +184,8 @@ ALTER TABLE `productos`
 -- Indices de la tabla `restaurantes`
 --
 ALTER TABLE `restaurantes`
-  ADD PRIMARY KEY (`codigo`);
+  ADD PRIMARY KEY (`codigo`),
+  ADD UNIQUE KEY `u_email` (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -124,7 +195,19 @@ ALTER TABLE `restaurantes`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `pedidos`
+--
+ALTER TABLE `pedidos`
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `pedidos_productos`
+--
+ALTER TABLE `pedidos_productos`
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
@@ -136,11 +219,24 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `restaurantes`
 --
 ALTER TABLE `restaurantes`
-  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `codigo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD CONSTRAINT `fk_restaurante` FOREIGN KEY (`restaurante`) REFERENCES `restaurantes` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `pedidos_productos`
+--
+ALTER TABLE `pedidos_productos`
+  ADD CONSTRAINT `fk_pedidos` FOREIGN KEY (`pedido`) REFERENCES `pedidos` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_producto` FOREIGN KEY (`producto`) REFERENCES `productos` (`codigo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `productos`
