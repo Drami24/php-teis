@@ -1,8 +1,6 @@
 <?php
 
-require_once 'Sesion.php';
-// require_once 'Productos.php';
-
+require_once 'sesion.php';
 comprobarSesion();
 $codigo = $_POST['codigo'];
 $unidades = (int)$_POST['unidades'];
@@ -11,4 +9,4 @@ if(isset($_SESSION['carrito'][$codigo])) {
 } else {
     $_SESSION['carrito'][$codigo] = $unidades;
 }
-header('Location: Carrito.php');
+header('Location: carrito.php');

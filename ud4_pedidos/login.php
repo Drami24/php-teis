@@ -1,15 +1,15 @@
 <?php
-    require_once('bd.php');
+    require_once 'bd.php';
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $usuario = $_POST['usuario'];
-        $contraseña = $_POST['contraseña'];
-        if (checkLogin($usuario, $contraseña)) {
+        $usuario = comprobarUsuario($_POST['usuario'], $_POST['contraseña']);
+        if ($usuario === FALSE) {
+            echo 'Las credenciales no son correctas, intentelo de nuevo!';
+            $usuario = $_POST['usuario'];
+        } else {
             session_start();
             $_SESSION['usuario'] = $usuario;
             $_SESSION['carrito'] = [];
-            header("Location: Categorias.php");
-        } else {
-            echo 'Las credenciales no son correctas, intentelo de nuevo!';
+            header("Location: categorias.php");
         }
     }
 ?>
@@ -24,7 +24,7 @@
     <?php if(isset($_GET['redirigido'])) {
         echo "<p>Necesita iniciar sesión para continuar</p>";
     }?>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+    <form action="" method="post">
         <label for="usuario">Usuario</label>
         <input type="text" name="usuario" id="usuario" value="<?php if(isset($usuario)) echo $usuario;?>">
         <label for="contraseña">Contraseña</label>
