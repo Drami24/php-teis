@@ -96,21 +96,26 @@ function insertarPedido($carrito, $codigoRestaurante) {
     $conexion = obtenerConexion();
     $conexion->beginTransaction();
     $hora = date("Y-m-d H:i:s", time());
-    $sql = "INSERT INTO pedidos (fecha, enviado, restaurante) 
-                values ('$hora', 0, $codigoRestaurante)";
-    $resultado = $conexion->query($sql);
-
+    $enviado = 0;
+    $sql = "INSERT INTO pedidos (fecha, enviado, restaurante) values (?, ?, ?)";
+    $resultado = $conexion->prepare($sql);
+    $resultado->bindParam(1, $hora);
+    $resultado->bindParam(2, $enviado);
+    $resultado->bindParam(3, $codigoRestaurante);
+    $resultado->execute();
     $pedido = $conexion->lastInsertId();
-
     foreach($carrito as $codigo=>$unidades) {
-        $sql = "INSERT INTO pedidos_productos (pedido, producto, unidades)
-                    values($pedido, $codigo, $unidades)";
-        $resultado = $conexion->query($sql);
+        $sql = "INSERT INTO pedidos_productos (pedido, producto, unidades) values(?, ?, ?)";
+        $resultado = $conexion->prepare($sql);
+        $resultado->bindParam(1, $pedido);
+        $resultado->bindParam(2, $codigo);
+        $resultado->bindParam(3, $unidades);
+        $resultado->execute();
     }
-
-    $sql = "UPDATE productos SET stock = stock - $unidades 
-                WHERE codigo = $codigoRestaurante";
-    $resultado = $conexion->query($sql);
+    $sql = "UPDATE productos SET stock = stock - $unidades WHERE codigo = ?";
+    $resultado = $conexion->prepare($sql);
+    $resultado->bindParam(1, $codigoRestaurante);
+    $resultado->execute();
     $conexion->commit();
     return $pedido;
 }
