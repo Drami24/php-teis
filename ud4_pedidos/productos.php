@@ -35,6 +35,7 @@
                     <input name='unidades' type='number' min='1' value='1'>
                     <input type='submit' value='Comprar'>
                     <input name='codigo' type='hidden' value='$codigo'>
+                    <input name='categoria' type='hidden' value='$categoria->codigo'>
                 </form>
             </td>
             </tr>";

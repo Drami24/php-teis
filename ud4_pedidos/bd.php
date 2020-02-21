@@ -111,11 +111,11 @@ function insertarPedido($carrito, $codigoRestaurante) {
         $resultado->bindParam(2, $codigo);
         $resultado->bindParam(3, $unidades);
         $resultado->execute();
+        $sql = "UPDATE productos SET stock = stock - $unidades WHERE codigo = ?";
+        $resultado = $conexion->prepare($sql);
+        $resultado->bindParam(1, $codigo);
+        $resultado->execute();
     }
-    $sql = "UPDATE productos SET stock = stock - $unidades WHERE codigo = ?";
-    $resultado = $conexion->prepare($sql);
-    $resultado->bindParam(1, $codigoRestaurante);
-    $resultado->execute();
     $conexion->commit();
     return $pedido;
 }
