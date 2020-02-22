@@ -2,7 +2,7 @@
     require_once 'sesion.php';
     require_once 'bd.php';
     comprobarSesion();
-?>
+    ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,7 +12,7 @@
 </head>
 <body>
 <?php
-    require 'Cabecera.php';
+    require 'cabecera.php';
     $categoria = obtenerCategoria($_GET['categoria']);
     $productos = obtenerProductosCategoria($_GET['categoria']);
     if(isset($_GET['stock'])) {
