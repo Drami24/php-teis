@@ -2,7 +2,7 @@
     require_once 'sesion.php';
     require_once 'bd.php';
     comprobarSesion();
-?>
+    ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
