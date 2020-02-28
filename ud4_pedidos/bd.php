@@ -61,6 +61,17 @@ function obtenerProductosCategoria($categoria) {
     return $sentencia->fetchAll(PDO::FETCH_OBJ);
 }
 
+function obtenerProductosConStock($categoria) {
+    $conexion = obtenerConexion();
+    $sql = "SELECT * FROM productos WHERE categoria = ? AND stock!=0";
+    $sentencia = $conexion->prepare($sql);
+    $sentencia->execute([$categoria]);
+    if($sentencia->rowCount() === 0) {
+        return FALSE;
+    }
+    return $sentencia->fetchAll(PDO::FETCH_OBJ);
+}
+
 function obtenerProductos($codigosProductos) {
     if (empty($codigosProductos)){
         return FALSE;

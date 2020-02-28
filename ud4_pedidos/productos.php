@@ -12,9 +12,9 @@
 </head>
 <body>
 <?php
-    require 'Cabecera.php';
+    require 'cabecera.php';
     $categoria = obtenerCategoria($_GET['categoria']);
-    $productos = obtenerProductosCategoria($_GET['categoria']);
+    $productos = obtenerProductosConStock($_GET['categoria']);
     if(isset($_GET['stock'])) {
         echo '<p>Unidades no añadidas, las unidades superan al stock en el carrito.</p>';
     }
