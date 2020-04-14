@@ -19,15 +19,30 @@ function obtenerConexion() {
 
 function comprobarUsuario($email, $password) {
     $conexion = obtenerConexion();
-    $sql = "SELECT * FROM restaurantes WHERE email = ? AND PASSWORD = ?";
+    $sql = "SELECT * FROM restaurantes WHERE email = ?";
     $resultado = $conexion->prepare($sql);
     $resultado->bindParam(1, $email);
-    $resultado->bindParam(2, $password);
     $resultado->execute();
     if ($resultado->rowCount() === 1) {
+        if (!password_verify($password, obtenerHash($email)->password)) {
+            return false;
+        }
         return $resultado->fetch(PDO::FETCH_OBJ);
     } else {
         return false;
+    }
+}
+
+function obtenerHash($email) {
+    $conexion = obtenerConexion();
+    $sql = "SELECT password FROM restaurantes WHERE email = ?";
+    $hash = $conexion->prepare($sql);
+    $hash->bindParam(1, $email);
+    $hash->execute();
+    if ($hash->rowCount() === 0) {
+        return false;
+    } else {
+        return $hash->fetch(PDO::FETCH_OBJ);
     }
 }
 
@@ -116,7 +131,7 @@ function insertarPedido($carrito, $codigoRestaurante) {
     $resultado->execute();
     $pedido = $conexion->lastInsertId();
     foreach($carrito as $codigo=>$unidades) {
-        $sql = "INSERT INTO pedidos_productos (pedido, producto, unidades) values(?, ?, ?)";
+        $sql = "INSERT INTO pedidos_productos (pedido, producto, unidades) values (?, ?, ?)";
         $resultado = $conexion->prepare($sql);
         $resultado->bindParam(1, $pedido);
         $resultado->bindParam(2, $codigo);
@@ -129,4 +144,18 @@ function insertarPedido($carrito, $codigoRestaurante) {
     }
     $conexion->commit();
     return $pedido;
+}
+
+function añadirRestauranteBD($nombre, $email, $contraseña, $pais, $ciudad, $direccion, $cp) {
+    $conexion = obtenerConexion();
+    $sql = "INSERT INTO restaurantes (nombre, email, password, pais, ciudad, direccion, codigo_postal) values (?,?,?,?,?,?,?)";
+    $resultado = $conexion->prepare($sql);
+    $resultado->bindParam(1, $nombre);
+    $resultado->bindParam(2, $email);
+    $resultado->bindParam(3, $contraseña);
+    $resultado->bindParam(4, $pais);
+    $resultado->bindParam(5, $ciudad);
+    $resultado->bindParam(6, $direccion);
+    $resultado->bindParam(7, $cp);
+    $resultado->execute();
 }
