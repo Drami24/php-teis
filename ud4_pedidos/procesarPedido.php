@@ -1,4 +1,5 @@
 <?php
+    require_once 'enviarEmail.php';
     require_once 'bd.php';
     require_once 'sesion.php';
     comprobarSesion();
@@ -17,9 +18,14 @@
     if($pedido === FALSE) {
         echo '<p>ERROR: No se ha podido procesar el pedido.</p>';
     } else {
+        $email = $_SESSION['usuario']->email;
         echo '<p>Pedido realizado correctamente</p>';
-        $_SESSION['carrito'] = [];
         echo '<p>Se enviará un correo de confirmación a ' . $_SESSION['usuario']->email;
+        $enviarEmail = enviarEmail($_SESSION['carrito'], $pedido, $email);
+        if ($enviarEmail!==TRUE) {
+            echo "Error al enviar: $enviarEmail <br>";
+        }
+        $_SESSION['carrito'] = [];
     }
 ?>
 </body>
