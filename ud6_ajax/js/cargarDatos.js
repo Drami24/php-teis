@@ -27,27 +27,27 @@ function eliminarProductos(formulario) {
 	xhttp.send(params);	
 	return false;
 }
-	
+
 function cargarProductos(destino) {
-	var xhttp = new XMLHttpRequest();	
+	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {			
+		if (this.readyState == 4 && this.status == 200) {
 			var prod = document.getElementById("contenido");
 			var titulo = document.getElementById("titulo");
 			titulo.innerHTML ="Productos";
-			try{
-				var filas =  JSON.parse(this.responseText);	
-				var tabla = crearTablaProductos(filas);				
+			try {
+				var filas =  JSON.parse(this.responseText);
+				var tabla = crearTablaProductos(filas);
 				prod.innerHTML = "";
-				prod.appendChild(tabla);												
-			}catch(e){
+				prod.appendChild(tabla);
+			}catch(e) {
 				var mensaje = document.createElement("p");
 				mensaje.innerHTML = "Categoría sin productos";
 				prod.innerHTML = "";
 				prod.appendChild(mensaje);
-			}					
+			}		
 		}
-	};	
+	};
 	xhttp.open("GET", destino, true);
 	xhttp.send();
 	return false;
@@ -88,8 +88,8 @@ function crearTablaProductos(productos) {
 	tabla.appendChild(cabecera);
 	for(var i = 0; i < productos.length; i++){
 		/*formulario*/
-		formu = crearFormulario( "Añadir", productos[i]['CodProd'],anadirProductos);		
-		fila = crear_fila([productos[i]['CodProd'], productos[i]['Nombre'], productos[i]['Descripcion'],productos[i]['Stock']], "td");
+		formu = crearFormulario( "Añadir", productos[i]['codigo'],anadirProductos);		
+		fila = crear_fila([productos[i]['codigo'], productos[i]['nombre'], productos[i]['descripcion'],productos[i]['stock']], "td");
 		celda_form = document.createElement("td");
 		celda_form.appendChild(formu);
 		fila.appendChild(celda_form);		
@@ -179,9 +179,8 @@ function cargarCategorias() {
 				var cats = JSON.parse(this.responseText);
 				var lista = document.createElement("ul");
 				for (var i = 0; i < cats.length; i++) {
-					var elem = document.createElement("li");					
-					//vinculo = crearVinculoCategorias(cats[i].nombre, cats[i].codCat);
-					vinculo = crearVinculoCategorias(cats.nombre, cats.codigo);
+					var elem = document.createElement("li");
+					vinculo = crearVinculoCategorias(cats[i].nombre, cats[i].codigo);
 					elem.appendChild(vinculo);
 					lista.appendChild(elem);
 				}
