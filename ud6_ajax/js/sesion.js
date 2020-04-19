@@ -1,15 +1,13 @@
-function cerrarSesionUnaPagina() {
-		/*cerrar sesión*/
+function cerrarSesion() {
 		var xhttp = new XMLHttpRequest();		
 		xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			/*cambiar visibilidades de las secciones*/
 			document.getElementById("principal").style.display= "none";
 			document.getElementById("login").style.display= "block";
 			document.getElementById("contenido").innerHTML = "";
 			alert("Sesion cerrada con éxito");									
 		}};
-		xhttp.open("GET", "logout_json.php", true);
+		xhttp.open("GET", "logout.php", true);
 		xhttp.send();		
 	return false;
 }
@@ -23,7 +21,6 @@ function login() {
 			}else{
 				document.getElementById("principal").style.display= "block";
 				document.getElementById("login").style.display= "none";
-				/*ponemos el usuario devuelto en el hueco correspondiente*/				
 				document.getElementById("cabecera_usuario").innerHTML = "Usuario: " + usuario;
 				cargarCategorias();
 			}

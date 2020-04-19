@@ -142,7 +142,7 @@ function cargarCarrito() {
 			}			
 						
 	}};
-	xhttp.open("GET", "carrito_json.php", true);
+	xhttp.open("GET", "carrito.php", true);
 	xhttp.send();
 	return false;
 }
