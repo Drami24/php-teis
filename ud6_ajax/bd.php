@@ -95,7 +95,8 @@ function obtenerProductos($codigosProductos) {
     $codigos = implode(',', $codigosProductos);
     $sql = "SELECT * FROM productos WHERE codigo IN ($codigos)";
     $productos =  $conexion->query($sql);
-    return $productos;
+    $resultado = $productos->fetchAll(PDO::FETCH_ASSOC);
+    return $resultado;
 }
 
 function obtenerProductos2($codigosProductos) {

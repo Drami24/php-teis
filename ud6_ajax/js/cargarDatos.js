@@ -6,8 +6,8 @@ function anadirProductos(formulario) {
 			alert("Producto añadido con éxito");
 			cargarCarrito();						
 	}};
-	var params = "cod="+formulario.elements['cod'].value+"&unidades="+formulario.elements['unidades'].value;
-	xhttp.open("POST", "anadir_json.php", true);	
+	var params = "codigo="+formulario.elements['codigo'].value+"&unidades="+formulario.elements['unidades'].value;
+	xhttp.open("POST", "añadir.php", true);	
 	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhttp.send(params);
 	return false;
@@ -20,7 +20,7 @@ function eliminarProductos(formulario) {
 			alert("Producto eliminado con éxito");
 			cargarCarrito();						
 		}};
-	var params = "cod="+formulario.elements['cod'].value+"&unidades="+formulario.elements['unidades'].value;
+	var params = "codigo="+formulario.elements['codigo'].value+"&unidades="+formulario.elements['unidades'].value;
 	xhttp.open("POST", "eliminar_json.php", true);	
 	//Send the proper header information along with the request
 	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -71,7 +71,7 @@ function crearFormulario(texto, cod, funcion) {
 	var codigo = document.createElement("input");
 	codigo.value = cod;
 	codigo.type = "hidden";
-	codigo.name = "cod";
+	codigo.name = "codigo";
 	var bsubmit = document.createElement("input");
 	bsubmit.type = "submit";
 	bsubmit.value = texto;
@@ -151,10 +151,11 @@ function crearTablaCarrito(productos) {
 	var tabla = document.createElement("table");
 	var cabecera = 	crear_fila(["Código", "Nombre", "Descripción", "Unidades", "Eliminar"], "th");
 	tabla.appendChild(cabecera);
+	console.log(productos);
 	for(var i = 0; i < productos.length; i++){
 		/*formulario*/
-		formu = crearFormulario("Eliminar", productos[i]['CodProd'],eliminarProductos);		
-		fila = crear_fila([productos[i]['CodProd'], productos[i]['Nombre'], productos[i]['Descripcion'],productos[i]['unidades']], "td");
+		formu = crearFormulario("Eliminar", productos[i]['codigo'],eliminarProductos);		
+		fila = crear_fila([productos[i]['codigo'], productos[i]['nombre'], productos[i]['descripcion'],productos[i]['stock']], "td");
 		celda_form = document.createElement("td");
 		celda_form.appendChild(formu);
 		fila.appendChild(celda_form);		
@@ -180,6 +181,7 @@ function cargarCategorias() {
 				var lista = document.createElement("ul");
 				for (var i = 0; i < cats.length; i++) {
 					var elem = document.createElement("li");
+					console.log(cats[i].nombre, cats[i].codigo);
 					vinculo = crearVinculoCategorias(cats[i].nombre, cats[i].codigo);
 					elem.appendChild(vinculo);
 					lista.appendChild(elem);

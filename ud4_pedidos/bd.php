@@ -98,26 +98,6 @@ function obtenerProductos($codigosProductos) {
     return $productos;
 }
 
-function obtenerProductos2($codigosProductos) {
-    $conexion = obtenerConexion();
-    $codigos = implode(',', $codigosProductos);
-    $sql = "SELECT * FROM productos WHERE codigo IN (?)";
-    $resultado = $conexion->prepare($sql);
-    $resultado->bindParam(1, $codigos);
-    $resultado->execute();
-    return $resultado->fetchAll();
-}
-
-function obtenerProductos3($codigosProductos) {
-    $conexion = obtenerConexion();
-    $codigos = implode(',', $codigosProductos);
-    $sql = "SELECT * FROM productos WHERE codigo IN (2,3,5)";
-    $resultado = $conexion->prepare($sql);
-    $resultado->bindParam(1, $codigos);
-    $resultado->execute();
-    return $resultado->fetchAll();
-}
-
 function insertarPedido($carrito, $codigoRestaurante) {
     $conexion = obtenerConexion();
     $conexion->beginTransaction();
