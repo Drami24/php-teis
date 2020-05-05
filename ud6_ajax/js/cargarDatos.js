@@ -21,7 +21,7 @@ function eliminarProductos(formulario) {
 			cargarCarrito();						
 		}};
 	var params = "codigo="+formulario.elements['codigo'].value+"&unidades="+formulario.elements['unidades'].value;
-	xhttp.open("POST", "eliminar_json.php", true);	
+	xhttp.open("POST", "eliminar.php", true);	
 	//Send the proper header information along with the request
 	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhttp.send(params);	
@@ -64,7 +64,7 @@ function crear_fila(campos, tipo) {
 }
 
 function crearFormulario(texto, cod, funcion) {
-	var formu = document.createElement("form");		
+	var formu = document.createElement("form");
 	var unidades = document.createElement("input");
 	unidades.value = 1;
 	unidades.name = "unidades";
@@ -86,16 +86,16 @@ function crearTablaProductos(productos) {
 	var tabla = document.createElement("table");
 	var cabecera = 	crear_fila(["Código", "Nombre", "Descripción", "Stock", "Comprar"], "th");
 	tabla.appendChild(cabecera);
-	for(var i = 0; i < productos.length; i++){
+	for(var i = 0; i < productos.length; i++) {
 		/*formulario*/
-		formu = crearFormulario( "Añadir", productos[i]['codigo'],anadirProductos);		
+		formu = crearFormulario( "Añadir", productos[i]['codigo'],anadirProductos);
 		fila = crear_fila([productos[i]['codigo'], productos[i]['nombre'], productos[i]['descripcion'],productos[i]['stock']], "td");
 		celda_form = document.createElement("td");
 		celda_form.appendChild(formu);
-		fila.appendChild(celda_form);		
-		tabla.appendChild(fila);		
-	}	
-	return tabla;		
+		fila.appendChild(celda_form);
+		tabla.appendChild(fila);
+	}
+	return tabla;
 }
 
 function procesarPedido() {
@@ -151,25 +151,26 @@ function crearTablaCarrito(productos) {
 	var tabla = document.createElement("table");
 	var cabecera = 	crear_fila(["Código", "Nombre", "Descripción", "Unidades", "Eliminar"], "th");
 	tabla.appendChild(cabecera);
-	console.log(productos);
 	for(var i = 0; i < productos.length; i++){
-		/*formulario*/
 		formu = crearFormulario("Eliminar", productos[i]['codigo'],eliminarProductos);		
 		fila = crear_fila([productos[i]['codigo'], productos[i]['nombre'], productos[i]['descripcion'],productos[i]['stock']], "td");
 		celda_form = document.createElement("td");
 		celda_form.appendChild(formu);
 		fila.appendChild(celda_form);		
 		tabla.appendChild(fila);		
-	}						
+	}
+	var num = 3;					
 	return tabla;
 }
 
 function crearVinculoCategorias(nom, cod) {
 	var vinculo = document.createElement("a");
-	var ruta = "productos.php?categoria=" +cod;;
+	var ruta = "productos.php?categoria=" +cod;
 	vinculo.href = ruta;
 	vinculo.innerHTML = nom;
-	vinculo.onclick = function(){return cargarProductos(this);}
+	vinculo.onclick = function() {
+		return cargarProductos(this);
+	}
 	return vinculo;
 }
 
@@ -181,7 +182,7 @@ function cargarCategorias() {
 				var lista = document.createElement("ul");
 				for (var i = 0; i < cats.length; i++) {
 					var elem = document.createElement("li");
-					console.log(cats[i].nombre, cats[i].codigo);
+					//console.log(cats[i].nombre, cats[i].codigo);
 					vinculo = crearVinculoCategorias(cats[i].nombre, cats[i].codigo);
 					elem.appendChild(vinculo);
 					lista.appendChild(elem);

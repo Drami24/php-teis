@@ -1,14 +1,15 @@
 function cerrarSesion() {
-		var xhttp = new XMLHttpRequest();		
+		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("principal").style.display= "none";
-			document.getElementById("login").style.display= "block";
-			document.getElementById("contenido").innerHTML = "";
-			alert("Sesion cerrada con éxito");									
-		}};
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("principal").style.display= "none";
+				document.getElementById("login").style.display= "block";
+				document.getElementById("contenido").innerHTML = "";
+				alert("Sesion cerrada con éxito");									
+			}
+		};
 		xhttp.open("GET", "logout.php", true);
-		xhttp.send();		
+		xhttp.send();
 	return false;
 }
 
@@ -16,6 +17,8 @@ function login() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
+			var respuesta = this.responseText;
+			//console.log(respuesta);
 			if(this.responseText==="FALSE"){
 				alert("Revise usuario y contraseña");
 			}else{
@@ -25,7 +28,7 @@ function login() {
 				cargarCategorias();
 			}
 		}
-	}
+	};
 	var usuario = document.getElementById("usuario").value;
 	var contrasinal = document.getElementById("contrasinal").value;	
 	var params = "usuario="+usuario+"&contrasinal="+contrasinal;
