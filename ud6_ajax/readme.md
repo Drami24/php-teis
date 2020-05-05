@@ -8,8 +8,9 @@
 
 ## Importar la base de datos
 
-En la carpeta sql puedes descargar la base de datos.
-La puedes importar con la herramienta phpmyadmin
+En la carpeta sql puedes descargar la base de datos. Pasos:
+- Crear una base de datos llamada pedidos
+- Importar el fichero pedidos.sql con la herramienta phpmyadmin
 
 ## Instalación de PHPMailer
 
