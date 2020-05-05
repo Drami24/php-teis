@@ -16,7 +16,7 @@ function anadirProductos(formulario) {
 function eliminarProductos(formulario) {
 	var xhttp = new XMLHttpRequest();		
 	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {kk
+		if (this.readyState == 4 && this.status == 200) {
 			alert("Producto eliminado con éxito");
 			cargarCarrito();						
 		}};
@@ -112,7 +112,7 @@ function procesarPedido() {
 				contenido.innerHTML = "Error al procesar el pedido";
 			}						
 	}};
-	xhttp.open("GET", "procesar_pedido_json.php", true);
+	xhttp.open("GET", "procesarPedido.php", true);
 	xhttp.send();
 	return false;
 }
@@ -153,7 +153,7 @@ function crearTablaCarrito(productos) {
 	tabla.appendChild(cabecera);
 	for(var i = 0; i < productos.length; i++){
 		formu = crearFormulario("Eliminar", productos[i]['codigo'],eliminarProductos);		
-		fila = crear_fila([productos[i]['codigo'], productos[i]['nombre'], productos[i]['descripcion'],productos[i]['stock']], "td");
+		fila = crear_fila([productos[i]['codigo'], productos[i]['nombre'], productos[i]['descripcion'],productos[i]['unidades']], "td");
 		celda_form = document.createElement("td");
 		celda_form.appendChild(formu);
 		fila.appendChild(celda_form);		

@@ -43,7 +43,6 @@ function enviarEmails($emails, $cuerpo, $asunto = "") {
     $arrayEmails = explode(',', $emails);
     //Fuerzo a poner correos de prueba para probar la recepción del mail
     $arrayEmails = array('damilores@gmail.com', 'dalodo@hotmail.es');
-    echo '<br>Error: Configure el <b>username</b> y el <b>password</b> del mail<br>';
     foreach ($arrayEmails as $email) {
         $mail->AddAddress($email, $email);
     }

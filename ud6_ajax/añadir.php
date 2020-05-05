@@ -1,6 +1,6 @@
 <?php
 require_once 'sesiones.php';
-//if(!comprobarSesion()) return;
+if(!comprobarSesion()) return;
 $codigo = $_POST['codigo'];
 $unidades = (int) $_POST['unidades'];
 if (isset($_SESSION['carrito'][$codigo])) {

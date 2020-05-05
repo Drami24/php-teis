@@ -1,8 +1,8 @@
 <?php
 require_once 'sesiones.php';
 require_once 'bd.php';
-//if(!comprobarSesion()) return;
-$_SESSION['carrito'] = ["4"=>6, "5"=>3];
+if(!comprobarSesion()) return;
+//$_SESSION['carrito'] = ["4"=>6, "5"=>3];
 $productos = obtenerProductos(array_keys($_SESSION['carrito']));
 foreach ($productos as &$producto) {
     $codigo = $producto['codigo'];
