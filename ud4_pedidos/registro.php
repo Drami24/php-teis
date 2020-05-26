@@ -29,7 +29,7 @@
         <label for="email">Email</label>
         <input type="text" name="email"><br>
         <label for="password">Contraseña</label>
-        <input type="text" name="password"><br>
+        <input type="password" name="password"><br>
         <label for="pais">País</label>
         <input type="text" name="pais"><br>
         <label for="ciudad">Ciudad</label>
